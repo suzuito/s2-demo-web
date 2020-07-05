@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-content>
+        <h1>S2で扱う座標</h1>
+
+        <p>難しい話は抜きにしてS2を使ってみよう。下の地図中のどこかをクリックして欲しい。</p>
+        <google-map width='100%' height='300px' (mapClick)='clickMap1($event)'></google-map>
+
+        <table>
+            <tr>
+                <td>座標（緯度,経度）</td>
+                <td>(</td>
+                <td>{{clicked.lat}}</td>
+                <td>,</td>
+                <td>{{clicked.lng}}</td>
+                <td>)</td>
+            </tr>
+            <tr>
+                <td>s2.Point</td>
+                <td>(</td>
+                <td>{{clicked.lat}}</td>
+                <td>,</td>
+                <td>{{clicked.lng}}</td>
+                <td>)</td>
+            </tr>
+        </table>
+    </mat-card-content>
+</mat-card>

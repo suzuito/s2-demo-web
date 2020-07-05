@@ -1,13 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
+import { TopComponent } from './page/top/top.component';
+import { TopGuard } from './page/top/top.guard';
+import { SummaryComponent } from './page/summary/summary.component';
+import { PointComponent } from './page/point/point.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
-    canActivate: [],
+    component: TopComponent,
+    canActivate: [
+      TopGuard,
+    ],
+    children: [
+      {
+        path: '',
+        component: SummaryComponent,
+      },
+      {
+        path: 'point',
+        component: PointComponent,
+      }
+    ],
   }
 ];
 
