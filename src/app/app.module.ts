@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
+import {
+  HttpClientModule,
+} from '@angular/common/http';
 
 import {
   MatSidenavModule,
@@ -30,6 +33,7 @@ import { PointComponent } from './page/point/point.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     GoogleMapsModule,
     MatSidenavModule,
     MatListModule,
