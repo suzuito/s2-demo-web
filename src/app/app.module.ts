@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TopComponent } from './page/top/top.component';
 import { SummaryComponent } from './page/summary/summary.component';
 import { PointComponent } from './page/point/point.component';
+import { RegionRectComponent } from './page/region-rect/region-rect.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { PointComponent } from './page/point/point.component';
     AppComponent,
     TopComponent,
     SummaryComponent,
-    PointComponent
+    PointComponent,
+    RegionRectComponent
   ],
   imports: [
     BrowserModule,

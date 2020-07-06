@@ -6,7 +6,6 @@ import {
   ApiService,
 } from '../../api.service';
 import { S2Point, S2LatLng } from 'src/app/entity/s2';
-import { LineBasicMaterial } from 'three';
 
 @Component({
   selector: 'app-point',
