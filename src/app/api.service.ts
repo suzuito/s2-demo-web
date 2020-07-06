@@ -6,7 +6,7 @@ import {
 import { environment } from 'src/environments/environment';
 
 import {
-  S2Point, PointAllExpression,
+  S2Point, PointAllExpression, EdgeNew,
 } from './entity/s2';
 
 const AdminTokenHeaderName = 'X-S2-Demo-Token';
@@ -65,6 +65,21 @@ export class ApiService {
   ): Promise<PointAllExpression> {
     return this.http.get(
       u(environment.api, `/fn/point/all_expression?lat=${lat}&lng=${lng}`),
+      new OptBuilder()
+        .header(AdminTokenHeaderName, environment.adminToken)
+        .jsonResponseBody()
+        .gen(),
+    ).toPromise().then((v: any) => v);
+  }
+
+  async getEdgeNew(
+    lat1: number,
+    lng1: number,
+    lat2: number,
+    lng2: number,
+  ): Promise<EdgeNew> {
+    return this.http.get(
+      u(environment.api, `/edge/new?lat1=${lat1}&lng1=${lng1}&lat2=${lat2}&lng2=${lng2}`),
       new OptBuilder()
         .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()

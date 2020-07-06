@@ -16,7 +16,7 @@
 
         <pre><code [highlight]='code2'></code></pre>
 
-        <h3>単位球面上の座標</h3>
+        <h3>単位球面上の点</h3>
 
         <p>S2では、緯度・経度に対する直接的な幾何学計算はしない。緯度・経度を単位球面上の座標に変換した後の座標に対して幾何学計算が行われる。
             <a href='https://godoc.org/github.com/golang/geo/s2#Point'>s2.Point構造体</a>が単位球面上の座標を表わす。
@@ -28,11 +28,11 @@
 
         <h3>座標の変換</h3>
 
-        <p>次の関数は緯度・経度を単位球面上の座標へ変換する。</p>
+        <p>次の関数は緯度・経度を単位球面上の点へ変換する。</p>
 
         <pre><code [highlight]='code5'></code></pre>
 
-        <h3>デモ</h3>
+        <h3>デモ1</h3>
 
         <p>地図上のどこかをクリックすると、各座標の値が表示されるデモ。</p>
 
@@ -67,8 +67,12 @@
             </tr>
         </table>
 
-
         <div #elUnitSphere>
         </div>
+
+        <h3>2点間の距離</h3>
+
+        <p>距離を算出するためには、s2.Point構造体のDistance関数を用いる。</p>
+        <pre><code [highlight]='codePointsDistance'></code></pre>
     </mat-card-content>
 </mat-card>

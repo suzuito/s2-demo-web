@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegionRectComponent implements OnInit {
 
+  public codeEdgeDefinition = `
+  type Edge struct {
+    V0, V1 Point
+  }
+  `;
+
   constructor() { }
 
   ngOnInit(): void {

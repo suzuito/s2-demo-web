@@ -1,1 +1,27 @@
-<p>region-rect works!</p>
+<mat-card>
+    <mat-card-content>
+        <h1>S2で扱う領域</h1>
+
+        <p>S2では、様々な幾何図形（矩形、円、多角形・・・）に対する幾何学計算のための関数が実装されている。
+            S2では、これらを図形とは呼ばずに領域と呼んでいるため、慣習に合わせて、本記事においても領域と呼ぶことにする。
+            なお、全ての領域は単位球面上に定義されていることに注意すること。
+            S2にて実装されている領域は以下の通りである。
+        </p>
+
+        <ol>
+            <li>辺 (s2.Edge)</li>
+            <li>矩形 (s2.Rect)</li>
+            <li>円 (s2.Cap)</li>
+            <li>点列 (s2.Loop)</li>
+            <li>多角形 (s2.Polygon)</li>
+            <li>点列 (s2.Polyline)</li>
+        </ol>
+
+        <h3>辺 (s2.Edge)</h3>
+
+        <p>2つの点からなる辺。この辺は単位球面上にあるため、測地線とも呼ばれる。</p>
+
+        <pre><code [highlight]='codeEdgeDefinition'></code></pre>
+
+    </mat-card-content>
+</mat-card>

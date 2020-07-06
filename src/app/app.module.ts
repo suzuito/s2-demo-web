@@ -24,6 +24,7 @@ import { TopComponent } from './page/top/top.component';
 import { SummaryComponent } from './page/summary/summary.component';
 import { PointComponent } from './page/point/point.component';
 import { RegionRectComponent } from './page/region-rect/region-rect.component';
+import { EdgeComponent } from './page/edge/edge.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { RegionRectComponent } from './page/region-rect/region-rect.component';
     TopComponent,
     SummaryComponent,
     PointComponent,
-    RegionRectComponent
+    RegionRectComponent,
+    EdgeComponent
   ],
   imports: [
     BrowserModule,
