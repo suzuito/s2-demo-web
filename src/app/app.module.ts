@@ -15,12 +15,15 @@ import {
   MatCardModule,
 } from '@angular/material/card';
 
+import { HighlightModule } from 'ngx-highlightjs';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TopComponent } from './page/top/top.component';
 import { SummaryComponent } from './page/summary/summary.component';
 import { PointComponent } from './page/point/point.component';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { PointComponent } from './page/point/point.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    HighlightModule,
     GoogleMapsModule,
     MatSidenavModule,
     MatListModule,

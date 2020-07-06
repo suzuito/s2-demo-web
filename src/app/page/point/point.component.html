@@ -2,20 +2,61 @@
     <mat-card-content>
         <h1>S2で扱う座標</h1>
 
-        <p>難しい話は抜きにしてS2を使ってみよう。下の地図中のどこかをクリックして欲しい。</p>
-        <google-map width='100%' height='300px' (mapClick)='clickMap1($event)'></google-map>
+        <h3>緯度・経度</h3>
+
+        <p>S2では、<a href='https://godoc.org/github.com/golang/geo/s2#LatLng'>s2.LatLng構造体</a>が地球上の緯度・経度を表わす。
+        </p>
+
+        <pre><code [highlight]='code1'></code></pre>
+
+        <p>LatとLngはラジアン表現であることに注意する。一般的に使われている緯度・経度、例えば東京の緯度・経度を表わす（35.6804, 139.7690）という数字のペアは、角度表現である。
+            角度表現の緯度・経度からLatLng構造体を初期化するための関数が<a
+                href='https://godoc.org/github.com/golang/geo/s2#LatLngFromDegrees'>s2.LatLngFromDegrees関数</a>である。
+        </p>
+
+        <pre><code [highlight]='code2'></code></pre>
+
+        <h3>単位球面上の座標</h3>
+
+        <p>S2では、緯度・経度に対する直接的な幾何学計算はしない。緯度・経度を単位球面上の座標に変換した後の座標に対して幾何学計算が行われる。
+            <a href='https://godoc.org/github.com/golang/geo/s2#Point'>s2.Point構造体</a>が単位球面上の座標を表わす。
+        </p>
+        <pre><code [highlight]='code3'></code></pre>
+
+        <p><a href='https://godoc.org/github.com/golang/geo/s2#LatLng'>r3.Vector構造体</a>は、3次元空間上のベクトルを表わす。</p>
+        <pre><code [highlight]='code4'></code></pre>
+
+        <h3>座標の変換</h3>
+
+        <p>次の関数は緯度・経度を単位球面上の座標へ変換する。</p>
+
+        <pre><code [highlight]='code5'></code></pre>
+
+        <h3>デモ</h3>
+
+        <p>地図上のどこかをクリックすると、各座標の値が表示されるデモ。</p>
+
+        <google-map width='100%' height='300px' (mapClick)='clickMap1($event)' [zoom]='1'></google-map>
 
         <table>
             <tr>
-                <td>座標（緯度,経度）</td>
+                <td>緯度,経度（度数表現）</td>
                 <td>(</td>
                 <td>{{clicked.lat}}</td>
                 <td>,</td>
                 <td>{{clicked.lng}}</td>
                 <td>)</td>
             </tr>
-            <tr>
-                <td>s2.Point（X, Y, Z）</td>
+            <tr *ngIf='clickedAsLatLng'>
+                <td>緯度,経度（s2.LatLng構造体）</td>
+                <td>(</td>
+                <td>{{clickedAsLatLng.Lat}}</td>
+                <td>,</td>
+                <td>{{clickedAsLatLng.Lng}}</td>
+                <td>)</td>
+            </tr>
+            <tr *ngIf='clickedAsPoint'>
+                <td>単位球面上の座標（s2.Point構造体）</td>
                 <td>(</td>
                 <td>{{clickedAsPoint.X}}</td>
                 <td>,</td>
@@ -25,5 +66,9 @@
                 <td>)</td>
             </tr>
         </table>
+
+
+        <div #elUnitSphere>
+        </div>
     </mat-card-content>
 </mat-card>

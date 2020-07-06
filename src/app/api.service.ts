@@ -6,7 +6,7 @@ import {
 import { environment } from 'src/environments/environment';
 
 import {
-  S2Point,
+  S2Point, PointAllExpression,
 } from './entity/s2';
 
 const AdminTokenHeaderName = 'X-S2-Demo-Token';
@@ -62,14 +62,14 @@ export class ApiService {
   async getFnPointFromLatLng(
     lat: number,
     lng: number,
-  ): Promise<S2Point> {
+  ): Promise<PointAllExpression> {
     return this.http.get(
-      u(environment.api, `/fn/point/PointFromLatLng?lat=${lat}&lng=${lng}`),
+      u(environment.api, `/fn/point/all_expression?lat=${lat}&lng=${lng}`),
       new OptBuilder()
         .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()
         .gen(),
-    ).toPromise().then((v) => v as any);
+    ).toPromise().then((v: any) => v);
   }
 
 }
