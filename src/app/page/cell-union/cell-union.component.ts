@@ -5,6 +5,11 @@ import { newPolylineFromGeoJSONPolygon, PolylineLiteral } from '../gmaputils';
 import { ApiService } from 'src/app/api.service';
 import { CellLiteral } from 'src/app/entity/s2';
 
+interface Map1Data {
+  cells: Array<CellLiteral>;
+  polylines: Array<PolylineLiteral>;
+}
+
 @Component({
   selector: 'app-cell-union',
   templateUrl: './cell-union.component.html',
@@ -19,15 +24,20 @@ export class CellUnionComponent implements OnInit {
   public map1RegionPolyline: PolylineLiteral;
   public map1Center: google.maps.LatLngLiteral;
   public map1RCCellUnionCells: Array<CellLiteral>;
-  public map1RCCellUnionPolylines: Array<PolylineLiteral>;
   public map1RCCoveringCells: Array<CellLiteral>;
-  public map1RCCoveringPolylines: Array<PolylineLiteral>;
   public map1RCFastCoveringCells: Array<CellLiteral>;
-  public map1RCFastCoveringPolylines: Array<PolylineLiteral>;
   public map1RCInteriorCellUnionCells: Array<CellLiteral>;
-  public map1RCInteriorCellUnionPolylines: Array<PolylineLiteral>;
   public map1RCInteriorCoveringCells: Array<CellLiteral>;
+  public map1RCCellUnionPolylines: Array<PolylineLiteral>;
+  public map1RCCoveringPolylines: Array<PolylineLiteral>;
+  public map1RCFastCoveringPolylines: Array<PolylineLiteral>;
+  public map1RCInteriorCellUnionPolylines: Array<PolylineLiteral>;
   public map1RCInteriorCoveringPolylines: Array<PolylineLiteral>;
+  public map1RCUnionCell: Array<Map1Data>;
+  public map1RCCovering: Array<Map1Data>;
+  public map1RCFastCovering: Array<Map1Data>;
+  public map1RCInteriorUnionCell: Array<Map1Data>;
+  public map1RCInteriorCovering: Array<Map1Data>;
   public map1MinLevel: number;
   public map1MaxLevel: number;
   public map1LevelMod: number;
@@ -36,6 +46,11 @@ export class CellUnionComponent implements OnInit {
   constructor(
     private api: ApiService,
   ) {
+    this.map1RCUnionCell = [];
+    this.map1RCCovering = [];
+    this.map1RCFastCovering = [];
+    this.map1RCInteriorUnionCell = [];
+    this.map1RCInteriorCovering = [];
   }
 
   ngOnInit(): void {
@@ -123,6 +138,11 @@ export class CellUnionComponent implements OnInit {
     this.map1RCFastCoveringCells = [];
     this.map1RCInteriorCellUnionCells = [];
     this.map1RCInteriorCoveringCells = [];
+    this.map1RCUnionCell = [];
+    this.map1RCCovering = [];
+    this.map1RCFastCovering = [];
+    this.map1RCInteriorUnionCell = [];
+    this.map1RCInteriorCovering = [];
     this.api.postCellUnionRegionCovererCellUnion(
       this.map1MinLevel,
       this.map1MaxLevel,
@@ -135,6 +155,26 @@ export class CellUnionComponent implements OnInit {
       this.map1RCFastCoveringCells.push(...v.FastCovering);
       this.map1RCInteriorCellUnionCells.push(...v.InteriorCellUnion);
       this.map1RCInteriorCoveringCells.push(...v.InteriorCovering);
+      this.map1RCUnionCell.push({
+        cells: v.CellUnion,
+        polylines: [],
+      });
+      this.map1RCCovering.push({
+        cells: v.Covering,
+        polylines: [],
+      });
+      this.map1RCFastCovering.push({
+        cells: v.FastCovering,
+        polylines: [],
+      });
+      this.map1RCInteriorUnionCell.push({
+        cells: v.InteriorCellUnion,
+        polylines: [],
+      });
+      this.map1RCInteriorCovering.push({
+        cells: v.InteriorCovering,
+        polylines: [],
+      });
       this.map1UpdatePolylines();
     });
   }
