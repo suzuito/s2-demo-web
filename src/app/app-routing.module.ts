@@ -6,6 +6,8 @@ import { SummaryComponent } from './page/summary/summary.component';
 import { PointComponent } from './page/point/point.component';
 import { RegionRectComponent } from './page/region-rect/region-rect.component';
 import { EdgeComponent } from './page/edge/edge.component';
+import { CellComponent } from './page/cell/cell.component';
+import { CellUnionComponent } from './page/cell-union/cell-union.component';
 
 
 const routes: Routes = [
@@ -31,6 +33,14 @@ const routes: Routes = [
       {
         path: 'region_rect',
         component: RegionRectComponent,
+      },
+      {
+        path: 'cell',
+        component: CellComponent,
+      },
+      {
+        path: 'cell_union',
+        component: CellUnionComponent,
       }
     ],
   }

@@ -6,7 +6,7 @@ import {
 import { environment } from 'src/environments/environment';
 
 import {
-  S2Point, PointAllExpression, EdgeNew,
+  S2Point, PointAllExpression, EdgeNew, CellLiteral, RegionCovererResult,
 } from './entity/s2';
 
 const AdminTokenHeaderName = 'X-S2-Demo-Token';
@@ -80,6 +80,91 @@ export class ApiService {
   ): Promise<EdgeNew> {
     return this.http.get(
       u(environment.api, `/edge/new?lat1=${lat1}&lng1=${lng1}&lat2=${lat2}&lng2=${lng2}`),
+      new OptBuilder()
+        .header(AdminTokenHeaderName, environment.adminToken)
+        .jsonResponseBody()
+        .gen(),
+    ).toPromise().then((v: any) => v);
+  }
+
+  async postCellNew(
+    lat: number,
+    lng: number,
+  ): Promise<CellLiteral> {
+    return this.http.post(
+      u(environment.api, `/cell/new?lat=${lat}&lng=${lng}`),
+      {
+        lat,
+        lng,
+      },
+      new OptBuilder()
+        .header(AdminTokenHeaderName, environment.adminToken)
+        .jsonResponseBody()
+        .gen(),
+    ).toPromise().then((v: any) => v);
+  }
+
+  async postCellAllParents(
+    id: string,
+  ): Promise<Array<CellLiteral>> {
+    return this.http.post(
+      u(environment.api, `/cell/all_parents?id=${id}`),
+      {
+        id,
+      },
+      new OptBuilder()
+        .header(AdminTokenHeaderName, environment.adminToken)
+        .jsonResponseBody()
+        .gen(),
+    ).toPromise().then((v: any) => v);
+  }
+
+  async postCellFromToken(
+    id: string,
+  ): Promise<CellLiteral> {
+    return this.http.post(
+      u(environment.api, `/cell/from_token?id=${id}`),
+      {
+        id,
+      },
+      new OptBuilder()
+        .header(AdminTokenHeaderName, environment.adminToken)
+        .jsonResponseBody()
+        .gen(),
+    ).toPromise().then((v: any) => v);
+  }
+
+  async postChildCells(
+    id: string,
+  ): Promise<Array<CellLiteral>> {
+    return this.http.post(
+      u(environment.api, `/cell/children?id=${id}`),
+      {
+        id,
+      },
+      new OptBuilder()
+        .header(AdminTokenHeaderName, environment.adminToken)
+        .jsonResponseBody()
+        .gen(),
+    ).toPromise().then((v: any) => v);
+  }
+
+  async postCellUnionRegionCovererCellUnion(
+    minLevel: number,
+    maxLevel: number,
+    levelMod: number,
+    maxCells: number,
+    region: Array<google.maps.LatLngLiteral>,
+  ): Promise<RegionCovererResult> {
+    return this.http.post(
+      u(environment.api, `/cell_union/region_coverer`),
+      {
+        region,
+        minLevel,
+        maxLevel,
+        levelMod,
+        maxCells,
+      },
       new OptBuilder()
         .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()

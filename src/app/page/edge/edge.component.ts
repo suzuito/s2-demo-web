@@ -2,20 +2,12 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { S2Edge, S2LatLng, EdgeNew } from 'src/app/entity/s2';
 import { ApiService } from 'src/app/api.service';
 
-interface MarkerLiteral {
-  position: google.maps.LatLngLiteral;
-  options: google.maps.MarkerOptions;
-}
+import {
+  MarkerLiteral,
+  PolylineLiteral,
+  EdgeLiteral,
+} from '../gmaputils';
 
-interface PolylineLiteral {
-  path: Array<google.maps.LatLngLiteral>;
-  options: google.maps.PolylineOptions;
-}
-
-interface EdgeLiteral {
-  tail: number;
-  head: number;
-}
 
 @Component({
   selector: 'app-edge',
@@ -102,8 +94,6 @@ length := p1.Distance(p2)`;
     return this.map1Markers[i];
   }
   map1EdgeNew(i: number): EdgeNew {
-    console.log(this.map1S2EdgeNews);
-    console.log(i);
     if (i >= this.map1S2EdgeNews.length) {
       return null;
     }

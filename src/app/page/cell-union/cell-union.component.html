@@ -1,0 +1,60 @@
+<mat-card>
+    <mat-card-content>
+        <h1>CellUnion</h1>
+
+        <p>Cellは領域の近似に使われることが多い。このとき便利なのがCellUnionである。</p>
+
+        <p>CellUnionとはCellIDの集合であり、この集合は隙間なく領域を埋め尽くしており、Cell同士は重なりを持たない。</p>
+
+        <pre><code [highlight]='codeCellUnionDefinition'></code></pre>
+
+        <p>RegionCovererはCellUnionによって領域を近似するための関数を提供する。</p>
+
+        <div>
+            <div style='display: flex; flex-direction: row;'>
+                <div>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]='map1MinLevel' placeholder='MinLevel' type='number' min='0'
+                            max='30'>
+                    </mat-form-field>
+                </div>
+                <div style='width: 10px;'></div>
+                <div>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]='map1MaxLevel' placeholder='MaxLevel' type='number' min='0'
+                            max='30'>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div style='display: flex; flex-direction: row;'>
+                <div>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]='map1LevelMod' placeholder='LevelMod' type='number'>
+                    </mat-form-field>
+                </div>
+                <div style='width: 10px;'></div>
+                <div>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]='map1MaxCells' placeholder='MaxCells' type='number'>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button mat-button (click)='map1ClickRegionCoverer()'>Exec</button>
+        </div>
+
+        <google-map #map1 width='100%' height='300px' [zoom]='12' [center]='map1Center'>
+            <map-polygon [paths]='map1RegionPolyline.path' [options]='map1RegionPolyline.options'>
+            </map-polygon>
+            <map-polygon *ngFor='let l of map1RCCellUnionPolylines' [paths]='l.path' [options]='l.options'>
+            </map-polygon>
+            <!--map-polygon *ngFor='let l of map1RCCoveringPolylines' [paths]='l.path' [options]='l.options'>
+            </map-polygon>
+            <map-polygon *ngFor='let l of map1RCFastCoveringPolylines' [paths]='l.path' [options]='l.options'>
+            </map-polygon>
+            <map-polygon *ngFor='let l of map1RCInteriorCellUnionPolylines' [paths]='l.path' [options]='l.options'>
+            </map-polygon>
+            <map-polygon *ngFor='let l of map1RCInteriorCoveringPolylines' [paths]='l.path' [options]='l.options'>
+            </map-polygon-->
+        </google-map>
+    </mat-card-content>
+</mat-card>

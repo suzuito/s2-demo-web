@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
     "@sgbj/angular-gist": "^0.3.0",
+    "@types/d3": "^5.7.2",
+    "d3": "^5.16.0",
     "ngx-highlightjs": "^4.1.0-beta",
     "rxjs": "~6.5.5",
     "three": "^0.118.3",

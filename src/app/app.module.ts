@@ -14,6 +14,15 @@ import {
 import {
   MatCardModule,
 } from '@angular/material/card';
+import {
+  MatButtonModule,
+} from '@angular/material/button';
+import {
+  MatInputModule,
+} from '@angular/material/input';
+import {
+  MatFormFieldModule,
+} from '@angular/material/form-field';
 
 import { HighlightModule } from 'ngx-highlightjs';
 
@@ -25,6 +34,9 @@ import { SummaryComponent } from './page/summary/summary.component';
 import { PointComponent } from './page/point/point.component';
 import { RegionRectComponent } from './page/region-rect/region-rect.component';
 import { EdgeComponent } from './page/edge/edge.component';
+import { CellComponent } from './page/cell/cell.component';
+import { FormsModule } from '@angular/forms';
+import { CellUnionComponent } from './page/cell-union/cell-union.component';
 
 
 @NgModule({
@@ -34,18 +46,24 @@ import { EdgeComponent } from './page/edge/edge.component';
     SummaryComponent,
     PointComponent,
     RegionRectComponent,
-    EdgeComponent
+    EdgeComponent,
+    CellComponent,
+    CellUnionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     HighlightModule,
     GoogleMapsModule,
     MatSidenavModule,
     MatListModule,
     MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
