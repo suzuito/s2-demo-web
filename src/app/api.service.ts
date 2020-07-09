@@ -150,17 +150,14 @@ export class ApiService {
   }
 
   async postCellUnionRegionCovererCellUnion(
-    minLevel: number,
     maxLevel: number,
     levelMod: number,
     maxCells: number,
-    region: Array<google.maps.LatLngLiteral>,
   ): Promise<RegionCovererResult> {
+    console.log(maxLevel, levelMod, maxCells);
     return this.http.post(
       u(environment.api, `/cell_union/region_coverer`),
       {
-        region,
-        minLevel,
         maxLevel,
         levelMod,
         maxCells,

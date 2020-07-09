@@ -23,6 +23,12 @@ import {
 import {
   MatFormFieldModule,
 } from '@angular/material/form-field';
+import {
+  MatCheckboxModule,
+} from '@angular/material/checkbox';
+import {
+  MatSelectModule,
+} from '@angular/material/select';
 
 import { HighlightModule } from 'ngx-highlightjs';
 
@@ -37,6 +43,8 @@ import { EdgeComponent } from './page/edge/edge.component';
 import { CellComponent } from './page/cell/cell.component';
 import { FormsModule } from '@angular/forms';
 import { CellUnionComponent } from './page/cell-union/cell-union.component';
+import { LinkComponent } from './component/link/link.component';
+import { CellTableComponent } from './component/cell-table/cell-table.component';
 
 
 @NgModule({
@@ -48,7 +56,9 @@ import { CellUnionComponent } from './page/cell-union/cell-union.component';
     RegionRectComponent,
     EdgeComponent,
     CellComponent,
-    CellUnionComponent
+    CellUnionComponent,
+    LinkComponent,
+    CellTableComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +74,8 @@ import { CellUnionComponent } from './page/cell-union/cell-union.component';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
+    MatCheckboxModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

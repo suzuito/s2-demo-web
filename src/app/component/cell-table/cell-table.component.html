@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <td>ID</td>
+        <td>ID(Binary)</td>
+        <td>階層</td>
+        <td>単位球面上の面積</td>
+        <td></td>
+    </tr>
+    <tr *ngFor='let c of cells' (mouseover)='mouseOverCellRow(c)' (mouseout)='mouseOutCellRow(c)'>
+        <td>{{c.id}}</td>
+        <td>{{map1Bin(c)}}</td>
+        <td>{{c.level}}</td>
+        <td>{{c.approxArea}}</td>
+        <td><button mat-button (click)='clickGetChildrenInternal(c)'>子Cellを取得する</button></td>
+    </tr>
+</table>

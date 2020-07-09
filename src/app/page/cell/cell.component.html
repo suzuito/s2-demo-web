@@ -33,23 +33,9 @@
             </mat-form-field>
         </div>
         <div style='height: 200px; overflow: scroll;'>
-            <table>
-                <tr>
-                    <td>ID</td>
-                    <td>ID(Binary)</td>
-                    <td>階層</td>
-                    <td>単位球面上の面積</td>
-                    <td></td>
-                </tr>
-                <tr *ngFor='let l of map1CellsFiltered' (mouseover)='mouseOverCellRow(l)'
-                    (mouseout)='mouseOutCellRow(l)'>
-                    <td>{{l.id}}</td>
-                    <td>{{map1Bin(l)}}</td>
-                    <td>{{l.level}}</td>
-                    <td>{{l.approxArea}}</td>
-                    <td><button mat-button (click)='clickGetChildren(l)'>子Cellを取得する</button></td>
-                </tr>
-            </table>
+            <app-cell-table [disabledGetChildrenButton]='false' [cells]='map1CellsFiltered'
+                (mouseOverRow)='mouseOverCellRow($event)' (mouseOutRow)='mouseOutCellRow($event)'
+                (clickGetChildren)='clickGetChildren($event)'></app-cell-table>
         </div>
 
         <h3>Cellの特徴</h3>

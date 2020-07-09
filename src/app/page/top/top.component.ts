@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopComponent implements OnInit {
 
-  constructor() { }
+  public opened: boolean;
+
+  constructor() {
+    this.opened = true;
+  }
 
   ngOnInit(): void {
   }

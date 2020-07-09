@@ -95,11 +95,6 @@ export class CellComponent implements OnInit {
     });
   }
 
-  map1Bin(c: CellLiteral): string {
-    const i = parseInt(`0x${c.id}`, 16);
-    return i.toString(2);
-  }
-
   get map1CellsFiltered(): Array<CellLiteral> {
     return this.map1Cells.filter(v => {
       if (!this.map1MinID && !this.map1MaxID) {

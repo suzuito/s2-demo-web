@@ -2,11 +2,12 @@
     <mat-card-content>
         <h1>概要</h1>
         <p>
-            本サービスでは<a href='https://s2geometry.io/'>S2
-                Library</a>が提供する機能の利用例を示していく。
+            本サービスでは<app-link href='https://s2geometry.io/'>S2
+                Library</app-link>が提供する機能の利用例を示していく。
             S2は、Googleが開発した2次元平面・および3次元球面上の幾何学計算に特化したライブラリである。これに加えて、ヒルベルト曲線に基づく空間分割機能を提供する。
-            噂では、Pokemon Goで使用されているとのこと。その他の実績として、<a
-                href='https://www.mongodb.com/blog/post/new-geo-features-in-mongodb-24'>MongoDBの空間インデックスはS2を用いて実装されている。</a>
+            噂では、Pokemon Goで使用されているとのこと。その他の実績として、<app-link
+                href='https://www.mongodb.com/blog/post/new-geo-features-in-mongodb-24'>MongoDBの空間インデックスはS2を用いて実装されている。
+            </app-link>
             S2が主にサポートする言語はC++、Goである。Javaによる実装も存在しているが、もう長いことアップデートされていない。
             第三者によって、C++をバインディングしたPythonやNode.jsのライブラリも存在しているようである。
         </p>
@@ -18,8 +19,9 @@
         </p>
 
         <p>
-            S2はヒルベルト曲線に基づく空間分割機能も提供する。ヒルベルト曲線とは<a
-                href='https://ja.wikipedia.org/wiki/%E7%A9%BA%E9%96%93%E5%85%85%E5%A1%AB%E6%9B%B2%E7%B7%9A'>空間充填曲線</a>
+            S2はヒルベルト曲線に基づく空間分割機能も提供する。ヒルベルト曲線とは<app-link
+                href='https://ja.wikipedia.org/wiki/%E7%A9%BA%E9%96%93%E5%85%85%E5%A1%AB%E6%9B%B2%E7%B7%9A'>空間充填曲線
+            </app-link>
             の一つだ。空間充填曲線とは、ある一定の規則に従い空間を隙間なく埋め尽くすことのできる曲線である。
             空間充填曲線はこれまで様々に発見されている。ヒルベルト曲線はヒルベルトが発見したものだ。
             S2は、ヒルベルト曲線を用いて3次元球面を分割し、各空間への計算量の少ないアクセスを可能とする諸々の関数を提供する。

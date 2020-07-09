@@ -39,6 +39,7 @@ export interface CellLiteral {
 }
 
 export interface RegionCovererResult {
+    Region: Array<google.maps.LatLngLiteral>;
     CellUnion: Array<CellLiteral>;
     Covering: Array<CellLiteral>;
     FastCovering: Array<CellLiteral>;
