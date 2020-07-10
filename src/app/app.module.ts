@@ -30,7 +30,9 @@ import {
   MatSelectModule,
 } from '@angular/material/select';
 
-import { HighlightModule } from 'ngx-highlightjs';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import * as hljs from 'highlight.js';
+(document.defaultView as any).hljs = hljs;
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +48,12 @@ import { CellUnionComponent } from './page/cell-union/cell-union.component';
 import { LinkComponent } from './component/link/link.component';
 import { CellTableComponent } from './component/cell-table/cell-table.component';
 
+
+export function getHighlightLanguages(): any {
+  return {
+    go: () => import('highlight.js/lib/languages/go'),
+  };
+}
 
 @NgModule({
   declarations: [
@@ -77,7 +85,15 @@ import { CellTableComponent } from './component/cell-table/cell-table.component'
     MatCheckboxModule,
     MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        languages: getHighlightLanguages(),
+        lineNumbers: true,
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

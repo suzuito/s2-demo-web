@@ -8,7 +8,7 @@
             が地球上の緯度・経度を表わす。
         </p>
 
-        <pre><code [highlight]='code1'></code></pre>
+        <pre><code [highlight]='code1' class='language-go'></code></pre>
 
         <p>LatとLngはラジアン表現であることに注意する。一般的に使われている緯度・経度、例えば東京の緯度・経度を表わす（35.6804, 139.7690）という数字のペアは、角度表現である。
             角度表現の緯度・経度からLatLng構造体を初期化するための関数が<app-link
@@ -16,25 +16,25 @@
             である。
         </p>
 
-        <pre><code [highlight]='code2'></code></pre>
+        <pre><code [highlight]='code2' class='language-go'></code></pre>
 
         <h3>単位球面上の点</h3>
 
         <p>S2では、緯度・経度に対する直接的な幾何学計算はしない。緯度・経度を単位球面上の座標に変換した後の座標に対して幾何学計算が行われる。
             <app-link href='https://godoc.org/github.com/golang/geo/s2#Point'>s2.Point構造体</app-link>が単位球面上の座標を表わす。
         </p>
-        <pre><code [highlight]='code3'></code></pre>
+        <pre><code [highlight]='code3' class='language-go'></code></pre>
 
         <p>
             <app-link href='https://godoc.org/github.com/golang/geo/s2#LatLng'>r3.Vector構造体</app-link>は、3次元空間上のベクトルを表わす。
         </p>
-        <pre><code [highlight]='code4'></code></pre>
+        <pre><code [highlight]='code4' class='language-go'></code></pre>
 
         <h3>座標の変換</h3>
 
         <p>次の関数は緯度・経度を単位球面上の点へ変換する。</p>
 
-        <pre><code [highlight]='code5'></code></pre>
+        <pre><code [highlight]='code5' class='language-go'></code></pre>
 
         <h3>デモ1</h3>
 
@@ -77,6 +77,6 @@
         <h3>2点間の距離</h3>
 
         <p>距離を算出するためには、s2.Point構造体のDistance関数を用いる。</p>
-        <pre><code [highlight]='codePointsDistance'></code></pre>
+        <pre><code [highlight]='codePointsDistance' class='language-go'></code></pre>
     </mat-card-content>
 </mat-card>
