@@ -16,14 +16,15 @@
             <div style='display: flex; flex-direction: row;'>
                 <div>
                     <mat-form-field>
-                        <input matInput value='10' placeholder='MinLevel' type='number' min='0' max='30' disabled>
+                        <input matInput [(ngModel)]='map1MinLevel' placeholder='MinLevel' type='number' min='0'
+                            max='15'>
                     </mat-form-field>
                 </div>
                 <div style='width: 10px;'></div>
                 <div>
                     <mat-form-field>
-                        <input matInput [(ngModel)]='map1MaxLevel' placeholder='MaxLevel' type='number' min='20'
-                            max='30'>
+                        <input matInput [(ngModel)]='map1MaxLevel' placeholder='MaxLevel' type='number' min='0'
+                            max='20'>
                     </mat-form-field>
                 </div>
             </div>

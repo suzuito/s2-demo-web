@@ -41,6 +41,7 @@ export class CellUnionComponent implements OnInit {
   public map1RCFastCovering: Array<Map1Data>;
   public map1RCInteriorUnionCell: Array<Map1Data>;
   public map1RCInteriorCovering: Array<Map1Data>;
+  public map1MinLevel: number;
   public map1MaxLevel: number;
   public map1LevelMod: number;
   public map1MaxCells: number;
@@ -70,6 +71,7 @@ export class CellUnionComponent implements OnInit {
       lat: 35.701528,
       lng: 139.6741809,
     };
+    this.map1MinLevel = 0;
     this.map1MaxLevel = 20;
     this.map1LevelMod = 1;
     this.map1MaxCells = 100;
@@ -104,7 +106,7 @@ export class CellUnionComponent implements OnInit {
 
   public get map1AvailableLevels(): Array<string> {
     const ret = [];
-    for (let i = 0; i < this.map1MaxLevel + 1; i++) {
+    for (let i = 0; i < this.map1MinLevel + 1; i++) {
       if (i % this.map1LevelMod !== 0) {
         continue;
       }
@@ -168,6 +170,7 @@ export class CellUnionComponent implements OnInit {
     this.map1RCInteriorUnionCell = [];
     this.map1RCInteriorCovering = [];
     return this.api.postCellUnionRegionCovererCellUnion(
+      this.map1MinLevel,
       this.map1MaxLevel,
       this.map1LevelMod,
       this.map1MaxCells,

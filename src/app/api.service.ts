@@ -150,14 +150,15 @@ export class ApiService {
   }
 
   async postCellUnionRegionCovererCellUnion(
+    minLevel: number,
     maxLevel: number,
     levelMod: number,
     maxCells: number,
   ): Promise<RegionCovererResult> {
-    console.log(maxLevel, levelMod, maxCells);
     return this.http.post(
       u(environment.api, `/cell_union/region_coverer`),
       {
+        minLevel,
         maxLevel,
         levelMod,
         maxCells,
