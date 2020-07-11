@@ -2,5 +2,5 @@
 export const environment = {
   production: true,
   googleMapAPIKey: 'AIzaSyAATL88SybURO1USqQq6IqEPpoRNzheC7o',
-  api: 'http://localhost:8080',
+  api: 'https://s2-demo-go-7a7bdvhwoa-an.a.run.app',
 };
