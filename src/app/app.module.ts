@@ -29,6 +29,9 @@ import {
 import {
   MatSelectModule,
 } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTreeModule } from '@angular/material/tree';
 
 import { HighlightModule } from 'ngx-highlightjs';
 
@@ -45,6 +48,7 @@ import { FormsModule } from '@angular/forms';
 import { CellUnionComponent } from './page/cell-union/cell-union.component';
 import { LinkComponent } from './component/link/link.component';
 import { CellTableComponent } from './component/cell-table/cell-table.component';
+import { HeadRefDirective } from './component/head-ref.directive';
 
 
 @NgModule({
@@ -58,7 +62,8 @@ import { CellTableComponent } from './component/cell-table/cell-table.component'
     CellComponent,
     CellUnionComponent,
     LinkComponent,
-    CellTableComponent
+    CellTableComponent,
+    HeadRefDirective,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +81,9 @@ import { CellTableComponent } from './component/cell-table/cell-table.component'
     MatFormFieldModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
