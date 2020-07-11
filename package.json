@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build-godzilla": "ng build --configuration=godzilla",
+    "deploy-godzilla": "firebase deploy --project=s2-demo-godzilla",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
