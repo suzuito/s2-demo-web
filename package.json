@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build-godzilla": "ng build --configuration=godzilla",
     "deploy-godzilla": "firebase deploy --project=s2-demo-godzilla",
+    "deploy-godzilla-ci": "firebase deploy --project=s2-demo-godzilla --token \"$FIREBASE_TOKEN\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
