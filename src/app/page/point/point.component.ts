@@ -42,10 +42,12 @@ export class PointComponent implements OnInit, AfterViewInit {
   p := s2.PointFromLatLng(ll)
   `;
 
-  public codePointsDistance = `// ll1とll2はa1.LatLng
-p1 := s2.PointFromLatLng(ll1)
-p2 := s2.PointFromLatLng(ll2)
-length := p1.Distance(p2)`;
+  public codePointsDistance = `
+  // ll1とll2はa1.LatLng
+  p1 := s2.PointFromLatLng(ll1)
+  p2 := s2.PointFromLatLng(ll2)
+  length := p1.Distance(p2)
+  `;
 
   public clicked: google.maps.LatLngLiteral;
   public clickedAsPoint: S2Point;

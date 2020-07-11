@@ -33,7 +33,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
 
-import { HighlightModule } from 'ngx-highlightjs';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import * as hljs from 'highlight.js';
+(document.defaultView as any).hljs = hljs;
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,6 +52,12 @@ import { LinkComponent } from './component/link/link.component';
 import { CellTableComponent } from './component/cell-table/cell-table.component';
 import { HeadRefDirective } from './component/head-ref.directive';
 
+
+export function getHighlightLanguages(): any {
+  return {
+    go: () => import('highlight.js/lib/languages/go'),
+  };
+}
 
 @NgModule({
   declarations: [
@@ -85,7 +93,15 @@ import { HeadRefDirective } from './component/head-ref.directive';
     MatIconModule,
     MatTreeModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        languages: getHighlightLanguages(),
+        lineNumbers: true,
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
