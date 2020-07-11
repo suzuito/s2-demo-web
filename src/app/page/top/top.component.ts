@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AboutComponent } from 'src/app/component/about/about.component';
 
 interface TableOfContent {
   name: string;
@@ -17,7 +19,9 @@ export class TopComponent implements OnInit {
   public opened: boolean;
   public toc: Array<TableOfContent>;
 
-  constructor() {
+  constructor(
+    private dialog: MatDialog,
+  ) {
     this.opened = true;
     this.toc = [
       {
@@ -83,6 +87,10 @@ export class TopComponent implements OnInit {
       return 'を閉じる';
     }
     return '';
+  }
+
+  clickAbout(): void {
+    this.dialog.open(AboutComponent);
   }
 
 }

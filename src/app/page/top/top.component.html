@@ -13,10 +13,8 @@
         <mat-toolbar>
             <div class='link nav-each' (click)='toggleTOC()'>目次{{stringIsOpened}}</div>
             <div style='width: 5px;'></div>
-            <div class='link nav-each'>About</div>
-            <div style='width: 5px;'></div>
             <div class='link nav-each'>
-                <a mat-button href='https://github.com/suzuito/s2-demo-web' target='_blank'>GitHub</a>
+                <button mat-button (click)='clickAbout()'>About</button>
             </div>
         </mat-toolbar>
         <router-outlet></router-outlet>

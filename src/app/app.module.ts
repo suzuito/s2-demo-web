@@ -32,6 +32,7 @@ import {
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import * as hljs from 'highlight.js';
@@ -55,6 +56,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BaseComponent } from './page/base/base.component';
 import { DistanceComponent } from './page/distance/distance.component';
 import { RegionComponent } from './page/region/region.component';
+import { AboutComponent } from './component/about/about.component';
 
 
 export function getHighlightLanguages(): any {
@@ -78,6 +80,7 @@ export function getHighlightLanguages(): any {
     HeadRefDirective,
     DistanceComponent,
     RegionComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +101,7 @@ export function getHighlightLanguages(): any {
     MatToolbarModule,
     MatIconModule,
     MatTreeModule,
+    MatDialogModule,
   ],
   providers: [
     {
