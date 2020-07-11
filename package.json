@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build-godzilla": "ng build --configuration=godzilla",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -25,6 +25,7 @@
     "@sgbj/angular-gist": "^0.3.0",
     "@types/d3": "^5.7.2",
     "d3": "^5.16.0",
+    "firebase": "^7.16.0",
     "highlight.js": "^10.1.1",
     "ngx-highlightjs": "^4.1.0-beta",
     "rxjs": "~6.5.5",

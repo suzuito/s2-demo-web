@@ -9,8 +9,6 @@ import {
   S2Point, PointAllExpression, EdgeNew, CellLiteral, RegionCovererResult,
 } from './entity/s2';
 
-const AdminTokenHeaderName = 'X-S2-Demo-Token';
-
 function u(origin: string, path: string): string {
   return `${origin}${path}`;
 }
@@ -66,7 +64,6 @@ export class ApiService {
     return this.http.get(
       u(environment.api, `/fn/point/all_expression?lat=${lat}&lng=${lng}`),
       new OptBuilder()
-        .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()
         .gen(),
     ).toPromise().then((v: any) => v);
@@ -81,7 +78,6 @@ export class ApiService {
     return this.http.get(
       u(environment.api, `/edge/new?lat1=${lat1}&lng1=${lng1}&lat2=${lat2}&lng2=${lng2}`),
       new OptBuilder()
-        .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()
         .gen(),
     ).toPromise().then((v: any) => v);
@@ -98,7 +94,6 @@ export class ApiService {
         lng,
       },
       new OptBuilder()
-        .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()
         .gen(),
     ).toPromise().then((v: any) => v);
@@ -113,7 +108,6 @@ export class ApiService {
         id,
       },
       new OptBuilder()
-        .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()
         .gen(),
     ).toPromise().then((v: any) => v);
@@ -128,7 +122,6 @@ export class ApiService {
         id,
       },
       new OptBuilder()
-        .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()
         .gen(),
     ).toPromise().then((v: any) => v);
@@ -143,7 +136,6 @@ export class ApiService {
         id,
       },
       new OptBuilder()
-        .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()
         .gen(),
     ).toPromise().then((v: any) => v);
@@ -164,7 +156,6 @@ export class ApiService {
         maxCells,
       },
       new OptBuilder()
-        .header(AdminTokenHeaderName, environment.adminToken)
         .jsonResponseBody()
         .gen(),
     ).toPromise().then((v: any) => v);
