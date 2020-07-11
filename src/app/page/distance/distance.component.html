@@ -1,0 +1,34 @@
+<mat-card>
+    <mat-card-content>
+        <h1 appHeadRef id='距離'>距離</h1>
+
+        <h3 appHeadRef id='s1.Angle'>s1.Angle</h3>
+
+        <p>
+            s2では、距離の単位は球面上の2点のなす角のラジアン表現である。以下が2点間の距離を求める関数である。
+        </p>
+
+        <pre><code [highlight]='codeDistance'></code></pre>
+
+        <p>
+            すなわち、s2における距離は量そのものには意味がない（量にメートルやフィートといった意味付けができない）。
+            量は比較するためだけにある。
+            そのため、s2における距離は、単位球面上の2つの点を結ぶ線分の長さであると言い換えても、問題はない。
+            なぜなら、距離を線分の長さであると見なした場合でも、量の比較結果は変わらないからである。
+        </p>
+
+        <p>
+            例えば、下のデモは、地図上の赤の点と緑の点を単位球面上にプロットしたものだ。
+            地図上における赤の点と緑の点の距離は、単位球面上における赤の点と緑の点を結ぶ線分の長さに対応する。
+        </p>
+
+        <google-map width='100%' height='300px' [zoom]='1'>
+            <map-circle *ngFor='let m of markers; let i = index' [center]='m.center' [radius]='m.radius'
+                [options]='m.options' (circleDragend)='dragend($event, i)'>
+            </map-circle>
+        </google-map>
+
+        <div #elUnitSphere></div>
+
+    </mat-card-content>
+</mat-card>

@@ -1,38 +1,69 @@
 <mat-card>
     <mat-card-content>
-        <h1>S2で扱う座標</h1>
+        <h1>座標系</h1>
 
-        <h3>緯度・経度</h3>
+        <h3 appHeadRef id='緯度・経度'>緯度・経度</h3>
 
-        <p>S2では、<app-link href='https://godoc.org/github.com/golang/geo/s2#LatLng'>s2.LatLng構造体</app-link>
-            が地球上の緯度・経度を表わす。
+        <p>
+            緯度・経度とは、地球を球とみなしたときの球面上の点を一意に特定するための2つの数値のペアである。
+            球面上にある点を取ったとき、その点の緯度は点と赤道の差分（度数表現）、経度は点と本初子午線の差分を表している。
+            図を用いた詳しい説明は
+            <app-link href='https://www.aokids.jp/others/keiido.html'>こちら</app-link>にあるので、参考にして欲しい。
+        </p>
+
+        <h3 appHeadRef id='s1.Angle'>s1.Angle</h3>
+
+        <p>s2では、<app-link href='https://godoc.org/github.com/golang/geo/s1#Angle'>s1.Angle</app-link>
+            が角度を表わす。s1.Angleはラジアン表現の角度を表わすことに注意する。</p>
+
+        <pre><code [highlight]='codeAngleDefinition'></code></pre>
+
+        <table>
+            <tr>
+                <td>ラジアン表現 s1.Angle</td>
+                <td>度数表現 s1.Angle().Degree()</td>
+            </tr>
+            <tr *ngFor='let a of angles'>
+                <td>{{a}}</td>
+                <td>{{degree(a)}}</td>
+            </tr>
+        </table>
+
+        <h3 appHeadRef id='s2.LatLng'>s2.LatLng</h3>
+
+        <p>s2では、<app-link href='https://godoc.org/github.com/golang/geo/s2#LatLng'>s2.LatLng構造体</app-link>
+            が緯度・経度を表わす。
         </p>
 
         <pre><code [highlight]='code1' class='language-go'></code></pre>
 
-        <p>LatとLngはラジアン表現であることに注意する。一般的に使われている緯度・経度、例えば東京の緯度・経度を表わす（35.6804, 139.7690）という数字のペアは、角度表現である。
-            角度表現の緯度・経度からLatLng構造体を初期化するための関数が<app-link
+        <p>LatとLngはラジアン表現であることに注意する。
+            一般的に、緯度・経度は度数表現である。東京の緯度・経度を表わす（35.6804, 139.7690）という数字のペアは、度数表現である。
+            GISで利用される多くの標準規格（<app-link href='https://geojson.org/'>GeoJSON</app-link>等）において、緯度・経度は度数表現である。
+            s2.LatLng構造体の緯度と経度はラジアン表現なので、度数表現からラジアン表現に変換し、s2.LatLng構造体のインスタンスを生成しなければならない。
+            度数表現の緯度・経度からLatLng構造体を初期化するための関数が<app-link
                 href='https://godoc.org/github.com/golang/geo/s2#LatLngFromDegrees'>s2.LatLngFromDegrees関数</app-link>
             である。
         </p>
 
         <pre><code [highlight]='code2' class='language-go'></code></pre>
 
-        <h3>単位球面上の点</h3>
+        <h3 appHeadRef id='s2.Point'>s2.Point</h3>
 
-        <p>S2では、緯度・経度に対する直接的な幾何学計算はしない。緯度・経度を単位球面上の座標に変換した後の座標に対して幾何学計算が行われる。
-            <app-link href='https://godoc.org/github.com/golang/geo/s2#Point'>s2.Point構造体</app-link>が単位球面上の座標を表わす。
+        <p>s2では、緯度・経度に対して直接の幾何計算はしない。緯度・経度を単位球面上の座標に変換した後の（x,y,z）座標に対して幾何学計算が行われる。
+            <app-link href='https://godoc.org/github.com/golang/geo/s2#Point'>s2.Point構造体</app-link>
+            が単位球面上の（x,y,z）座標を表わす。
         </p>
         <pre><code [highlight]='code3' class='language-go'></code></pre>
 
         <p>
-            <app-link href='https://godoc.org/github.com/golang/geo/s2#LatLng'>r3.Vector構造体</app-link>は、3次元空間上のベクトルを表わす。
+            <app-link href='https://godoc.org/github.com/golang/geo/s2#LatLng'>r3.Vector構造体</app-link>
         </p>
         <pre><code [highlight]='code4' class='language-go'></code></pre>
 
-        <h3>座標の変換</h3>
-
-        <p>次の関数は緯度・経度を単位球面上の点へ変換する。</p>
+        <p>
+            s2における全ての幾何計算は、s2.Pointに対して行われる。
+            次の関数は緯度・経度を単位球面上の点へ変換する。</p>
 
         <pre><code [highlight]='code5' class='language-go'></code></pre>
 
@@ -74,7 +105,7 @@
         <div #elUnitSphere>
         </div>
 
-        <h3>2点間の距離</h3>
+        <h3>距離</h3>
 
         <p>距離を算出するためには、s2.Point構造体のDistance関数を用いる。</p>
         <pre><code [highlight]='codePointsDistance' class='language-go'></code></pre>

@@ -4,6 +4,13 @@ export interface MarkerLiteral {
     options: google.maps.MarkerOptions;
 }
 
+
+export interface CircleLiteral {
+    center: google.maps.LatLngLiteral;
+    radius: number;
+    options: google.maps.CircleOptions;
+}
+
 export interface PolylineLiteral {
     path: Array<google.maps.LatLngLiteral>;
     options: google.maps.PolygonOptions;

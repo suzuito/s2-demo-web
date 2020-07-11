@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Output } from '@angular/core';
 
 import * as THREE from 'three';
 
@@ -6,48 +6,58 @@ import {
   ApiService,
 } from '../../api.service';
 import { S2Point, S2LatLng } from 'src/app/entity/s2';
+import { ActivatedRoute } from '@angular/router';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-point',
   templateUrl: './point.component.html',
   styleUrls: ['./point.component.scss']
 })
-export class PointComponent implements OnInit, AfterViewInit {
+export class PointComponent extends BaseComponent implements OnInit, AfterViewInit {
 
-  public code1 = `
-  type LatLng struct {
-    Lat, Lng s1.Angle
-  }
-  `;
+  public codeAngleDefinition = `// ラジアン表現の角度
+type Angle float64
 
-  public code2 = `
-  // LatLng構造体の初期化
-  ll := s2.LatLngFromDegrees(35.6804, 139.7690)
-  `;
+// 度数表現の角度へ変換する
+a := s1.Angle(math.Pi) // π
+a.Degrees()            // 180
+`;
 
-  public code3 = `
-  type Point struct {
-    r3.Vector
-  }
-  `;
+  public angles: Array<number> = [
+    0,
+    Math.PI * (0.25),
+    Math.PI * (0.5),
+    Math.PI * (0.75),
+    Math.PI,
+    Math.PI * (1.25),
+    Math.PI * (1.5),
+    Math.PI * (1.75),
+    Math.PI * 2,
+  ];
 
-  public code4 = `
-  type Vector struct {
-    X, Y, Z float64
-  }
-  `;
+  public code1 = `type LatLng struct {
+  Lat, Lng s1.Angle
+}`;
 
-  public code5 = `
-  // llはs2.LatLng構造体
-  p := s2.PointFromLatLng(ll)
-  `;
+  public code2 = `// LatLng構造体の初期化
+ll := s2.LatLngFromDegrees(35.6804, 139.7690)`;
 
-  public codePointsDistance = `
-  // ll1とll2はa1.LatLng
-  p1 := s2.PointFromLatLng(ll1)
-  p2 := s2.PointFromLatLng(ll2)
-  length := p1.Distance(p2)
-  `;
+  public code3 = `type Point struct {
+  r3.Vector
+}`;
+
+  public code4 = `type Vector struct {
+  X, Y, Z float64
+}`;
+
+  public code5 = `// llはs2.LatLng構造体
+p := s2.PointFromLatLng(ll)`;
+
+  public codePointsDistance = `// ll1とll2はa1.LatLng
+p1 := s2.PointFromLatLng(ll1)
+p2 := s2.PointFromLatLng(ll2)
+length := p1.Distance(p2)`;
 
   public clicked: google.maps.LatLngLiteral;
   public clickedAsPoint: S2Point;
@@ -67,7 +77,9 @@ export class PointComponent implements OnInit, AfterViewInit {
 
   constructor(
     private api: ApiService,
+    private route: ActivatedRoute,
   ) {
+    super(route);
     this.clicked = {
       lat: -1,
       lng: -1,
@@ -79,9 +91,11 @@ export class PointComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    super.OnInit();
   }
 
   ngAfterViewInit(): void {
+    super.AfterViewInit();
     // Unit sphere
     const el = this.elUnitSphere.nativeElement as HTMLElement;
     this.renderer = new THREE.WebGLRenderer();
@@ -97,8 +111,11 @@ export class PointComponent implements OnInit, AfterViewInit {
     this.renderer.setSize(width, height);
     const geometry = new THREE.WireframeGeometry(
       new THREE.SphereGeometry(
-        1, 50, 50, 0,
-        Math.PI * 2, 0, Math.PI * 2,
+        1, 50, 50,
+        0,
+        Math.PI * 2,
+        0,
+        Math.PI * 2,
       ),
     );
     const sphere = new THREE.LineSegments(
@@ -151,30 +168,6 @@ export class PointComponent implements OnInit, AfterViewInit {
           this.clickedAsThreeObjectMesh.position.z,
         ));
         this.clickedLine1.geometry = g1;
-        // const g2 = new THREE.Geometry();
-        // g2.vertices.push(new THREE.Vector3(
-        //   0,
-        //   0,
-        //   0,
-        // ));
-        // g2.vertices.push(new THREE.Vector3(
-        //   this.clickedAsThreeObjectMesh.position.x,
-        //   0,
-        //   this.clickedAsThreeObjectMesh.position.z,
-        // ));
-        // this.clickedLine2.geometry = g2;
-        // const g3 = new THREE.Geometry();
-        // g3.vertices.push(new THREE.Vector3(
-        //   0,
-        //   0,
-        //   0,
-        // ));
-        // g3.vertices.push(new THREE.Vector3(
-        //   0,
-        //   this.clickedAsThreeObjectMesh.position.y,
-        //   this.clickedAsThreeObjectMesh.position.z,
-        // ));
-        // this.clickedLine3.geometry = g3;
         this.renderer.render(this.scene, this.camera);
       },
       100,
@@ -195,4 +188,7 @@ export class PointComponent implements OnInit, AfterViewInit {
     this.clickedAsLatLng = pair.latlng;
   }
 
+  public degree(a: number): number {
+    return a * (180 / Math.PI);
+  }
 }

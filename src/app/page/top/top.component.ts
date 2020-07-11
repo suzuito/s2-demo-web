@@ -24,63 +24,44 @@ export class TopComponent implements OnInit {
         name: '概要',
         url: '',
         children: [
-          {
-            name: 's2とは何か？',
-          },
-          {
-            name: 's2で何ができるのか？',
-          },
+          { name: 's2とは何か？', },
+          { name: 's2で何ができるのか？', },
         ],
       },
       {
         name: '座標系',
         url: 'point',
         children: [
-          {
-            name: '一般的なLatLng',
-          },
-          {
-            name: 's2.LatLng',
-          },
-          {
-            name: 's2.Point',
-          },
+          { name: 's1.Angle', },
+          { name: 's2.LatLng', },
+          { name: 's2.Point', },
         ],
       },
       {
         name: '距離',
-        url: 'point',
+        url: 'distance',
         children: [
-          {
-            name: 's2.Angle',
-          },
-          {
-            name: 's2.ChordAngle',
-          },
+          { name: 's1.Angle', },
         ],
       },
       {
         name: '領域',
-        url: 'point',
+        url: 'region',
         children: [
-          {
-            name: 's2.Cap',
-          },
-          {
-            name: 's2.Loop',
-          },
+          { name: 's2.Cap', },
+          { name: 's2.Loop', },
         ],
       },
       {
         name: 'Cell',
-        url: 'point',
+        url: 'cell',
         children: [
-          {
-            name: 's2.Cell',
-          },
-          {
-            name: 's2.UnionCell',
-          },
+        ],
+      },
+      {
+        name: 'UnionCell',
+        url: 'cell_union',
+        children: [
         ],
       },
     ];

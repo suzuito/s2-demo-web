@@ -36,6 +36,7 @@ export interface CellLiteral {
     center: google.maps.LatLngLiteral;
     level: number;
     approxArea: number;
+    points: Array<S2Point>;
 }
 
 export interface RegionCovererResult {

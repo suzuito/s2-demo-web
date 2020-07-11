@@ -1,5 +1,6 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Directive({
   selector: '[appHeadRef]'
@@ -10,10 +11,10 @@ export class HeadRefDirective {
 
   constructor(
     el: ElementRef,
+    private locationService: Location,
     private router: Router,
   ) {
     this.e = el.nativeElement as HTMLElement;
-
     this.e.style.cursor = 'pointer';
   }
 
@@ -26,7 +27,7 @@ export class HeadRefDirective {
   }
 
   @HostListener('click') onClick(): void {
-    this.router.navigate(['.'], { fragment: this.e.id });
+    this.router.navigate([this.locationService.path()], { fragment: this.e.id });
   }
 
 }

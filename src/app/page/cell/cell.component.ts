@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MarkerLiteral, newPolylineFromGeoJSONPolygon, PolylineLiteral } from '../gmaputils';
 import { ApiService } from 'src/app/api.service';
 import { CellLiteral } from 'src/app/entity/s2';
+import { unitSphere, displayRotateY } from 'src/app/threejs/sphere';
+import * as THREE from 'three';
 
 @Component({
   selector: 'app-cell',
   templateUrl: './cell.component.html',
   styleUrls: ['./cell.component.scss']
 })
-export class CellComponent implements OnInit {
+export class CellComponent implements OnInit, AfterViewInit {
 
   public codeCellFromLatLng = `
   latlng := s2.LatLngFromDegrees(lat, lng)
@@ -36,6 +38,9 @@ export class CellComponent implements OnInit {
   public map1MinID: string;
   public map1MaxID: string;
 
+  @ViewChild('elUnitSphere')
+  private elUnitSphere: ElementRef;
+
   constructor(
     private api: ApiService,
   ) {
@@ -54,6 +59,9 @@ export class CellComponent implements OnInit {
       this.updateMap1Polylines();
       this.map1Center = v.center;
     });
+  }
+
+  ngAfterViewInit(): void {
   }
 
   // Map1

@@ -5,36 +5,66 @@
         <h3 appHeadRef id='s2とは何か？'>s2とは何か？</h3>
 
         <p>
-            本サービスでは<app-link href='https://s2geometry.io/'>S2
+            本サービスでは<app-link href='https://s2geometry.io/'>s2
                 Library</app-link>が提供する機能の利用例を示していく。
-            S2は、Googleが開発した2次元平面・および3次元球面上の幾何学計算に特化したライブラリである。これに加えて、ヒルベルト曲線に基づく空間分割機能を提供する。
+            本サービスで示される全てのサンプルコードはGo言語で書かれている。これは私の好き嫌いによるところなので悪しからず。
         </p>
 
         <p>
-            S2が3次元球面上の幾何学計算に特化している理由は、S2がGISデータを扱う目的で作られたライブラリだからだ。
-            GISでは、地球を3次元球面に近似し計算を行なう。すなわち、地球上の緯度・経度は3次元球面上の座標(x,y,z)として計算されるのである。
-            2次元平面上の幾何学計算が可能である理由は、3次元球面上の幾何学計算には2次元平面上の幾何学計算が必要となるからである。
+            s2は、Googleが開発した2次元平面・および3次元球面上の幾何学計算に特化したライブラリである。これに加えて、<app-link
+                href='https://s2geometry.io/devguide/s2cell_hierarchy'>ヒルベルト曲線に基づく空間分割機能</app-link>を提供する。
         </p>
 
         <p>
-            S2はヒルベルト曲線に基づく空間分割機能も提供する。ヒルベルト曲線とは<app-link
+            s2が3次元球面上の幾何学計算に特化している理由は、s2がGISを実装する目的で作られたライブラリだからだ。
+            GISは、地球を3次元球面に近似し計算を行なう。すなわち、<app-link href='https://ja.wikipedia.org/wiki/%E7%B5%8C%E7%B7%AF%E5%BA%A6'>
+                3次元球面上の座標(x,y,z)が地球上の緯度・経度</app-link>なのである。
+            s2は2次元平面上の幾何学計算もサポートするが、その理由は3次元球面上の幾何学計算には2次元平面上の幾何学計算が必要となるからに他ならない。
+        </p>
+
+        <p>
+            s2の大きな特徴のひとつは、<app-link href='https://s2geometry.io/devguide/s2cell_hierarchy'>
+                ヒルベルト曲線に基づく空間分割機能（s2.Cell）</app-link>を提供するところにある。
+            ヒルベルト曲線とは<app-link
                 href='https://ja.wikipedia.org/wiki/%E7%A9%BA%E9%96%93%E5%85%85%E5%A1%AB%E6%9B%B2%E7%B7%9A'>空間充填曲線
             </app-link>
-            の一つだ。空間充填曲線とは、ある一定の規則に従い空間を隙間なく埋め尽くすことのできる曲線である。
+            のひとつだ。空間充填曲線とは、ある一定の規則に従い空間を隙間なく埋め尽くすことのできる曲線である。
             空間充填曲線はこれまで様々に発見されている。ヒルベルト曲線はヒルベルトが発見したものだ。
-            S2は、ヒルベルト曲線を用いて3次元球面を分割し、各空間への計算量の少ないアクセスを可能とする諸々の関数を提供する。
-            空間分割機能はとても価値がある。なぜなら、空間インデックスの実装に欠かせないものとなるからだ。
+            s2は、ヒルベルト曲線を用いて3次元球面を分割し、各空間への計算量の少ないアクセスを可能とする諸々の関数を提供する。
+            s2ライブラリは堅牢な幾何学計算、汎用的に利用できるRegionインターフェース等、幾何学計算に優れているのに加えて、
+            この空間分割機能を提供するところに真の価値があると言える。
         </p>
 
         <h3 appHeadRef id='s2で何ができるのか？'>s2で何ができるのか？</h3>
 
         <p>
-            噂では、Pokemon Goで使用されているとのこと。その他の実績として、<app-link
-                href='https://www.mongodb.com/blog/post/new-geo-features-in-mongodb-24'>MongoDBの空間インデックスはS2を用いて実装されている。
-            </app-link>
-            S2が主にサポートする言語はC++、Goである。Javaによる実装も存在しているが、もう長いことアップデートされていない。
-            第三者によって、C++をバインディングしたPythonやNode.jsのライブラリも存在しているようである。
+            空間分割機能は空間インデックスの実装には欠かせないものとなる。
+            s2の利用実績として挙げられるのは、<app-link href='https://en.wikipedia.org/wiki/Spatial_database#Spatial_index'>空間インデックス
+            </app-link>の構築に用いているという事例である。
         </p>
+
+        <p>
+            <app-link href='https://developers.google.com/maps/documentation/gaming/concepts_playable_locations'>Google
+                playable
+                Locations APIにはs2が使用されている。
+            </app-link>
+        </p>
+
+        <p>
+            <app-link href='https://pokemongohub.net/post/article/comprehensive-guide-s2-cells-pokemon-go/'>噂では、Pokemon
+                Goでs2が使用されている</app-link>
+        </p>
+
+        <p>
+            <app-link href='https://www.mongodb.com/blog/post/new-geo-features-in-mongodb-24'>
+                MongoDBの空間インデックスはs2を用いて実装されている。
+            </app-link>
+        </p>
+
+        <h3 appHeadRef id='サポート言語'>サポート言語</h3>
+
+        <p>S2が主にサポートする言語はC++、Goである。Javaによる実装も存在しているが、もう長いことアップデートされていない。
+            第三者によって、C++をバインディングしたPythonやNode.jsのライブラリも存在しているようである。</p>
 
     </mat-card-content>
 </mat-card>

@@ -8,6 +8,8 @@ import { RegionRectComponent } from './page/region-rect/region-rect.component';
 import { EdgeComponent } from './page/edge/edge.component';
 import { CellComponent } from './page/cell/cell.component';
 import { CellUnionComponent } from './page/cell-union/cell-union.component';
+import { DistanceComponent } from './page/distance/distance.component';
+import { RegionComponent } from './page/region/region.component';
 
 
 const routes: Routes = [
@@ -41,18 +43,21 @@ const routes: Routes = [
       {
         path: 'cell_union',
         component: CellUnionComponent,
+      },
+      {
+        path: 'distance',
+        component: DistanceComponent,
+      },
+      {
+        path: 'region',
+        component: RegionComponent,
       }
     ],
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    enableTracing: true,
-    scrollPositionRestoration: 'enabled',
-    anchorScrolling: 'enabled',
-    scrollOffset: [0, 64],
-  })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

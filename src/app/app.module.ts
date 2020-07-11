@@ -51,6 +51,10 @@ import { CellUnionComponent } from './page/cell-union/cell-union.component';
 import { LinkComponent } from './component/link/link.component';
 import { CellTableComponent } from './component/cell-table/cell-table.component';
 import { HeadRefDirective } from './component/head-ref.directive';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { BaseComponent } from './page/base/base.component';
+import { DistanceComponent } from './page/distance/distance.component';
+import { RegionComponent } from './page/region/region.component';
 
 
 export function getHighlightLanguages(): any {
@@ -72,6 +76,8 @@ export function getHighlightLanguages(): any {
     LinkComponent,
     CellTableComponent,
     HeadRefDirective,
+    DistanceComponent,
+    RegionComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,7 +106,7 @@ export function getHighlightLanguages(): any {
         languages: getHighlightLanguages(),
         lineNumbers: true,
       }
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })
