@@ -6,7 +6,7 @@ import {
   ApiService,
 } from '../../api.service';
 import { S2Point, S2LatLng } from 'src/app/entity/s2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '../base/base.component';
 
 @Component({
@@ -78,8 +78,9 @@ length := p1.Distance(p2)`;
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
-    super(route);
+    super(route, router);
     this.clicked = {
       lat: -1,
       lng: -1,

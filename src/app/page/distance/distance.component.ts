@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { unitSphere, displayRotateY } from '../../threejs/sphere';
 import { MarkerLiteral, CircleLiteral } from '../gmaputils';
 
@@ -38,9 +38,10 @@ distance := a.Distance(b)`;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private api: ApiService,
   ) {
-    super(route);
+    super(route, router);
     this.latlngs = [
       { lat: 0, lng: 0 },
       { lat: 0, lng: 100 },

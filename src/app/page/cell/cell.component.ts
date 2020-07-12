@@ -4,13 +4,15 @@ import { ApiService } from 'src/app/api.service';
 import { CellLiteral } from 'src/app/entity/s2';
 import { unitSphere, displayRotateY } from 'src/app/threejs/sphere';
 import * as THREE from 'three';
+import { BaseComponent } from '../base/base.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cell',
   templateUrl: './cell.component.html',
   styleUrls: ['./cell.component.scss']
 })
-export class CellComponent implements OnInit, AfterViewInit {
+export class CellComponent extends BaseComponent implements OnInit, AfterViewInit {
 
   public codeCellFromLatLng = `
   latlng := s2.LatLngFromDegrees(lat, lng)
@@ -43,7 +45,10 @@ export class CellComponent implements OnInit, AfterViewInit {
 
   constructor(
     private api: ApiService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
+    super(route, router);
     this.map1InitialCellToken = '7';
     this.map1Cells = [];
     this.map1CellPolylines = [];
@@ -54,6 +59,7 @@ export class CellComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    super.OnInit();
     this.api.postCellFromToken(this.map1InitialCellToken).then(v => {
       this.pushMap1Cells(v);
       this.updateMap1Polylines();
@@ -62,6 +68,7 @@ export class CellComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    super.AfterViewInit();
   }
 
   // Map1

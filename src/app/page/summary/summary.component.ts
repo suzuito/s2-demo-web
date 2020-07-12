@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '../base/base.component';
 
 @Component({
@@ -11,8 +11,9 @@ export class SummaryComponent extends BaseComponent implements OnInit, AfterView
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
   ) {
-    super(route);
+    super(route, router);
   }
 
   ngOnInit(): void {

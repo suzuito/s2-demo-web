@@ -1,24 +1,42 @@
-import { OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+
+declare let gtag: any;
 
 export class BaseComponent {
 
   public fragment: string;
 
-  constructor(
-    private route1: ActivatedRoute,
-  ) {
-    this.fragment = '';
-  }
+  private gaid: string;
 
-  OnInit(): void {
-    this.route1.fragment.subscribe(f => {
+  constructor(
+    route: ActivatedRoute,
+    router: Router,
+  ) {
+    this.gaid = 'G-79P9XTW1Y6';
+    this.fragment = '';
+    router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        if (gtag) {
+          gtag('config', this.gaid, {
+            page_path: e.urlAfterRedirects,
+          });
+        }
+      }
+    });
+    route.fragment.subscribe(f => {
       this.fragment = f;
       if (!this.fragment) {
         return;
       }
-      document.getElementById(`${this.fragment}`).scrollIntoView();
+      const e = document.getElementById(`${this.fragment}`);
+      if (!e) {
+        return;
+      }
+      e.scrollIntoView();
     });
+  }
+
+  OnInit(): void {
   }
 
   AfterViewInit(): void {

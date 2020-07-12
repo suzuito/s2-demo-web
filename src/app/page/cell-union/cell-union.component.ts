@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { newPolylineFromGeoJSONPolygon, PolylineLiteral } from '../gmaputils';
 import { ApiService } from 'src/app/api.service';
 import { CellLiteral } from 'src/app/entity/s2';
+import { BaseComponent } from '../base/base.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Map1Data {
   cells: Array<CellLiteral>;
@@ -14,7 +16,7 @@ interface Map1Data {
   templateUrl: './cell-union.component.html',
   styleUrls: ['./cell-union.component.scss']
 })
-export class CellUnionComponent implements OnInit {
+export class CellUnionComponent extends BaseComponent implements OnInit, AfterViewInit {
 
   public codeCellUnionDefinition = `
   type CellUnion []CellID
@@ -50,7 +52,10 @@ export class CellUnionComponent implements OnInit {
 
   constructor(
     private api: ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
+    super(route, router);
     this.map1RCUnionCell = [];
     this.map1RCCovering = [];
     this.map1RCFastCovering = [];
@@ -67,6 +72,7 @@ export class CellUnionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    super.OnInit();
     this.map1Center = {
       lat: 35.701528,
       lng: 139.6741809,
@@ -76,6 +82,10 @@ export class CellUnionComponent implements OnInit {
     this.map1LevelMod = 1;
     this.map1MaxCells = 100;
     this.map1UpdateRegionCoverer();
+  }
+
+  ngAfterViewInit(): void {
+    super.AfterViewInit();
   }
 
   public get map1Cells(): Array<CellLiteral> {
