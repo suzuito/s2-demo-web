@@ -22,4 +22,4 @@ jobs:
           export_default_credentials: true
       - run: gsutil rm -r gs://${{env.GCP_PROJECT_ID}}-s2-demo-server/*
         continue-on-error: true
-      - run: gsutil cp -r dist/s2-demo/* gs://${{env.GCP_PROJECT_ID}}-s2-demo-server
+      - run: gsutil cp -r dist/s2-demo-web/* gs://${{env.GCP_PROJECT_ID}}-s2-demo-server
