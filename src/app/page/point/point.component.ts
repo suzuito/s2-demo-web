@@ -157,17 +157,17 @@ length := p1.Distance(p2)`;
         rotationY += 0.01;
         sphere.rotation.y = rotationY;
         this.groupedPoint.rotation.y = rotationY;
-        const g1 = new THREE.Geometry();
-        g1.vertices.push(new THREE.Vector3(
-          0,
-          0,
-          0,
-        ));
-        g1.vertices.push(new THREE.Vector3(
-          this.clickedAsThreeObjectMesh.position.x,
-          this.clickedAsThreeObjectMesh.position.y,
-          this.clickedAsThreeObjectMesh.position.z,
-        ));
+        const g1 = new THREE.BufferGeometry();
+        g1.setFromPoints(
+          [
+            new THREE.Vector3(0, 0, 0),
+            new THREE.Vector3(
+              this.clickedAsThreeObjectMesh.position.x,
+              this.clickedAsThreeObjectMesh.position.y,
+              this.clickedAsThreeObjectMesh.position.z,
+            ),
+          ]
+        )
         this.clickedLine1.geometry = g1;
         this.renderer.render(this.scene, this.camera);
       },

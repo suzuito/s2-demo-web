@@ -115,14 +115,18 @@ distance := a.Distance(b)`;
   }
 
   private updateThreeJSObjects(): void {
-    const g2 = new THREE.Geometry();
-    g2.vertices.push(new THREE.Vector3(this.points[0].X, this.points[0].Y, this.points[0].Z));
-    g2.vertices.push(new THREE.Vector3(this.points[1].X, this.points[1].Y, this.points[1].Z));
+    const g2 = new THREE.BufferGeometry();
+    g2.setFromPoints([
+      new THREE.Vector3(this.points[0].X, this.points[0].Y, this.points[0].Z),
+      new THREE.Vector3(this.points[1].X, this.points[1].Y, this.points[1].Z),
+    ]);
     this.thLineDistance.geometry = g2;
     this.points.forEach((p, i) => {
-      const g1 = new THREE.Geometry();
-      g1.vertices.push(new THREE.Vector3(0, 0, 0));
-      g1.vertices.push(new THREE.Vector3(p.X, p.Y, p.Z));
+      const g1 = new THREE.BufferGeometry();
+      g1.setFromPoints([
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(p.X, p.Y, p.Z),
+      ]);
       const l = this.thLines[i];
       l.geometry = g1;
       const point = this.thPoints[i];
