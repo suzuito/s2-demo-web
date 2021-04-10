@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RegionRectComponent } from './region-rect.component';
 
@@ -6,7 +6,7 @@ describe('RegionRectComponent', () => {
   let component: RegionRectComponent;
   let fixture: ComponentFixture<RegionRectComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RegionRectComponent ]
     })
