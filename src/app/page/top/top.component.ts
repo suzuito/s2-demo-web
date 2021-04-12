@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AboutComponent } from 'src/app/component/about/about.component';
 
 interface TableOfContent {
@@ -14,13 +15,17 @@ interface TableOfContent {
   templateUrl: './top.component.html',
   styleUrls: ['./top.component.scss']
 })
-export class TopComponent implements OnInit {
+export class TopComponent implements OnInit, AfterViewInit {
 
   public opened: boolean;
   public toc: Array<TableOfContent>;
 
+  @ViewChild('scroller')
+  private elScroller: ElementRef<HTMLDivElement> | undefined;
+
   constructor(
     private dialog: MatDialog,
+    private router: Router,
   ) {
     this.opened = true;
     this.toc = [
@@ -74,6 +79,9 @@ export class TopComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit(): void {
+  }
+
   toggleTOC(): void {
     if (this.opened) {
       this.opened = false;
@@ -92,5 +100,4 @@ export class TopComponent implements OnInit {
   clickAbout(): void {
     this.dialog.open(AboutComponent);
   }
-
 }

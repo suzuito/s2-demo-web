@@ -2,7 +2,7 @@
     <mat-sidenav mode='side' [opened]='opened'>
         <mat-card style='height: 100%;'>
             <div *ngFor='let v of toc' style='padding-bottom: 10px;'>
-                <div class='link' [routerLink]='v.url'>{{v.name}}</div>
+                <div class='link' [routerLink]='v.url' [fragment]='v.name'>{{v.name}}</div>
                 <div *ngFor='let u of v.children' class='link toc-sub' [routerLink]='v.url' [fragment]='u.name'>
                     #{{u.name}}
                 </div>
@@ -25,7 +25,7 @@
                 <button mat-button (click)='clickAbout()'>Copylight</button>
             </div>
         </mat-toolbar>
-        <div class='content'>
+        <div class='scroller' #scroller>
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>
