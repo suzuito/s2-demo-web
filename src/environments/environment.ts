@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  googleMapAPIKey: 'AIzaSyBcNO4X6AUiiXhOYmhu9voXD_oHF4W0P2Y',
+  googleMapAPIKey: 'AIzaSyC_WdqVjL87Um8rnSpi6sw0mqAHF_NBBb4',
   adminToken: 'hoge',
   api: 'http://localhost:8080',
 };

@@ -4,8 +4,25 @@ mat-sidenav-container {
     height: 100%;
 }
 
+mat-sidenav-content {
+    position: relative;
+}
+
 mat-toolbar {
+    position: absolute;
+    top: 0px;
     height: 20px;
+    left: 0px;
+    right: 0px;
+}
+
+.content {
+    position: absolute;
+    top: 20px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: scroll;
 }
 
 .nav-each {
