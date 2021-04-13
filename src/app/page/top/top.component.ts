@@ -34,7 +34,10 @@ export class TopComponent implements OnInit, AfterViewInit {
         url: '',
         children: [
           { name: 's2とは何か？', },
-          { name: 's2で何ができるのか？', },
+          { name: 's2はデータベースではない', },
+          { name: 'Cellとは何か？', },
+          { name: 's2の利用実績', },
+          { name: 's2がサポートする言語', },
         ],
       },
       {

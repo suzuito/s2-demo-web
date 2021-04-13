@@ -16,6 +16,8 @@ export class HeadRefDirective {
   ) {
     this.e = el.nativeElement as HTMLElement;
     this.e.style.cursor = 'pointer';
+    this.e.style.fontWeight = 'bold';
+    this.e.innerText = this.e.id;
   }
 
   @HostListener('mouseenter') onMouseEnter(): void {
