@@ -10,7 +10,9 @@ export class LinkComponent implements OnInit {
   @Input()
   public href: string;
 
-  constructor() { }
+  constructor() {
+    this.href = '';
+  }
 
   ngOnInit(): void {
   }

@@ -21,12 +21,12 @@ b := s2.Point{}
 // Distance関数の返り値の型はs1.Angle型である
 distance := a.Distance(b)`;
 
-  private scene: THREE.Scene;
-  private camera: THREE.PerspectiveCamera;
-  private renderer: THREE.WebGLRenderer;
+  private scene: THREE.Scene | undefined;
+  private camera: THREE.PerspectiveCamera | undefined;
+  private renderer: THREE.WebGLRenderer | undefined;
 
   @ViewChild('elUnitSphere')
-  private elUnitSphere: ElementRef;
+  private elUnitSphere: ElementRef | undefined;
 
   private latlngs: Array<google.maps.LatLngLiteral>;
   private points: Array<S2Point>;
@@ -53,12 +53,18 @@ distance := a.Distance(b)`;
     ];
     this.thLineDistance = new THREE.Line();
     this.updateMarkerLiteral();
+    this.markers = [];
+    this.thLines = [];
+    this.thPoints = [];
   }
 
   ngOnInit(): void {
   }
 
   async ngAfterViewInit(): Promise<void> {
+    if (this.elUnitSphere === undefined) {
+      throw new Error('elUnitSphere is undefined');
+    }
     [this.scene, this.camera, this.renderer] = unitSphere(
       this.elUnitSphere.nativeElement,
     );

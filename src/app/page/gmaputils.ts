@@ -22,7 +22,7 @@ export interface EdgeLiteral {
 }
 
 export function newPolylineFromGeoJSONPolygon(o: GeoJSON.Geometry): Array<PolylineLiteral> {
-    const ret = [];
+    const ret: Array<PolylineLiteral> = [];
     if (o.type !== 'Polygon') {
         throw new Error(`Geometry is not Polygon: ${o.type}`);
     }

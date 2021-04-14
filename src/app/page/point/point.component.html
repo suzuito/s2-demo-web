@@ -1,8 +1,31 @@
 <mat-card>
     <mat-card-content>
-        <h1 appHeadRef id='座標系'>座標系</h1>
+        <h1 appHeadRef id='点'></h1>
 
-        <h3 appHeadRef id='緯度・経度'>緯度・経度</h3>
+        <p>
+            s2の中で扱われる点。
+        </p>
+
+        <h3 appHeadRef id='s2.LatLng'></h3>
+
+        <p>s2では、<app-link href='https://pkg.go.dev/github.com/golang/geo/s2#LatLng'>s2.LatLng構造体</app-link>
+            が緯度・経度を表わす。
+        </p>
+
+        <pre><code [highlight]='code1' class='language-go'></code></pre>
+
+        <p>LatとLngはラジアン表現であることに注意する。
+            一般的に、緯度・経度は度数表現である。東京の緯度・経度を表わす（35.6804, 139.7690）という数字のペアは、度数表現である。
+            GISで利用される多くの標準規格（<app-link href='https://geojson.org/'>GeoJSON</app-link>等）において、緯度・経度は度数表現である。
+            s2.LatLng構造体の緯度と経度はラジアン表現なので、度数表現からラジアン表現に変換し、s2.LatLng構造体のインスタンスを生成しなければならない。
+            度数表現の緯度・経度からLatLng構造体を初期化するための関数が<app-link
+                href='https://godoc.org/github.com/golang/geo/s2#LatLngFromDegrees'>s2.LatLngFromDegrees関数</app-link>
+            である。
+        </p>
+
+        <pre><code [highlight]='code2' class='language-go'></code></pre>
+
+        <h3 appHeadRef id='緯度・経度'></h3>
 
         <p>
             緯度・経度とは、地球を球とみなしたときの球面上の点を一意に特定するための2つの数値のペアである。
@@ -28,25 +51,6 @@
                 <td>{{degree(a)}}</td>
             </tr>
         </table>
-
-        <h3 appHeadRef id='s2.LatLng'>s2.LatLng</h3>
-
-        <p>s2では、<app-link href='https://godoc.org/github.com/golang/geo/s2#LatLng'>s2.LatLng構造体</app-link>
-            が緯度・経度を表わす。
-        </p>
-
-        <pre><code [highlight]='code1' class='language-go'></code></pre>
-
-        <p>LatとLngはラジアン表現であることに注意する。
-            一般的に、緯度・経度は度数表現である。東京の緯度・経度を表わす（35.6804, 139.7690）という数字のペアは、度数表現である。
-            GISで利用される多くの標準規格（<app-link href='https://geojson.org/'>GeoJSON</app-link>等）において、緯度・経度は度数表現である。
-            s2.LatLng構造体の緯度と経度はラジアン表現なので、度数表現からラジアン表現に変換し、s2.LatLng構造体のインスタンスを生成しなければならない。
-            度数表現の緯度・経度からLatLng構造体を初期化するための関数が<app-link
-                href='https://godoc.org/github.com/golang/geo/s2#LatLngFromDegrees'>s2.LatLngFromDegrees関数</app-link>
-            である。
-        </p>
-
-        <pre><code [highlight]='code2' class='language-go'></code></pre>
 
         <h3 appHeadRef id='s2.Point'>s2.Point</h3>
 
