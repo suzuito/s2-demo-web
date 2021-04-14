@@ -36,12 +36,9 @@ export class CellComponent extends BaseComponent implements OnInit, AfterViewIni
   public map1InitialCellToken: string;
   public map1Cells: Array<CellLiteral>;
   public map1CellPolylines: Array<PolylineLiteral>;
-  public map1MouseOverCell: CellLiteral;
+  public map1MouseOverCell: CellLiteral | undefined;
   public map1MinID: string;
   public map1MaxID: string;
-
-  @ViewChild('elUnitSphere')
-  private elUnitSphere: ElementRef;
 
   constructor(
     private api: ApiService,
@@ -53,7 +50,6 @@ export class CellComponent extends BaseComponent implements OnInit, AfterViewIni
     this.map1Cells = [];
     this.map1CellPolylines = [];
     this.map1Center = { lat: 0, lng: 0 };
-    this.map1MouseOverCell = null;
     this.map1MinID = '';
     this.map1MaxID = '';
   }
@@ -99,7 +95,7 @@ export class CellComponent extends BaseComponent implements OnInit, AfterViewIni
   }
 
   mouseOutCellRow(c: CellLiteral): void {
-    this.map1MouseOverCell = null;
+    this.map1MouseOverCell = undefined;
     this.updateMap1Polylines();
   }
 

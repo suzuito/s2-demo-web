@@ -36,8 +36,8 @@ export class CellUnionComponent extends BaseComponent implements OnInit, AfterVi
   }
   `;
 
-  public map1RegionPolyline: PolylineLiteral;
-  public map1Center: google.maps.LatLngLiteral;
+  public map1RegionPolyline: PolylineLiteral | undefined;
+  public map1Center: google.maps.LatLngLiteral | undefined;
   public map1RCUnionCell: Array<Map1Data>;
   public map1RCCovering: Array<Map1Data>;
   public map1RCFastCovering: Array<Map1Data>;
@@ -69,10 +69,6 @@ export class CellUnionComponent extends BaseComponent implements OnInit, AfterVi
       'InteriorCovering',
     ];
     this.map1SelectedOption = 'UnionCell';
-  }
-
-  ngOnInit(): void {
-    super.OnInit();
     this.map1Center = {
       lat: 35.701528,
       lng: 139.6741809,
@@ -81,6 +77,10 @@ export class CellUnionComponent extends BaseComponent implements OnInit, AfterVi
     this.map1MaxLevel = 20;
     this.map1LevelMod = 1;
     this.map1MaxCells = 100;
+  }
+
+  ngOnInit(): void {
+    super.OnInit();
     this.map1UpdateRegionCoverer();
   }
 
@@ -90,7 +90,7 @@ export class CellUnionComponent extends BaseComponent implements OnInit, AfterVi
 
   public get map1Cells(): Array<CellLiteral> {
     function ext(a: Map1Data[]): Array<CellLiteral> {
-      const cells = [];
+      const cells: Array<CellLiteral> = [];
       a.forEach(v => {
         cells.push(...v.cells);
       });

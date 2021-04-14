@@ -60,20 +60,20 @@ p2 := s2.PointFromLatLng(ll2)
 length := p1.Distance(p2)`;
 
   public clicked: google.maps.LatLngLiteral;
-  public clickedAsPoint: S2Point;
-  public clickedAsLatLng: S2LatLng;
+  public clickedAsPoint: S2Point | undefined;
+  public clickedAsLatLng: S2LatLng | undefined;
 
   @ViewChild('elUnitSphere')
-  public elUnitSphere: ElementRef;
+  public elUnitSphere: ElementRef | undefined;
 
-  private renderer: THREE.WebGLRenderer;
-  private scene: THREE.Scene;
-  private camera: THREE.Camera;
-  private clickedAsThreeObjectMesh: THREE.Mesh;
-  private groupedPoint: THREE.Group;
-  private clickedLine1: THREE.Line;
-  private clickedLine2: THREE.Line;
-  private clickedLine3: THREE.Line;
+  private renderer: THREE.WebGLRenderer | undefined;
+  private scene: THREE.Scene | undefined;
+  private camera: THREE.Camera | undefined;
+  private clickedAsThreeObjectMesh: THREE.Mesh | undefined;
+  private groupedPoint: THREE.Group | undefined;
+  private clickedLine1: THREE.Line | undefined;
+  private clickedLine2: THREE.Line | undefined;
+  private clickedLine3: THREE.Line | undefined;
 
   constructor(
     private api: ApiService,
@@ -85,10 +85,10 @@ length := p1.Distance(p2)`;
       lat: -1,
       lng: -1,
     };
-    this.renderer = null;
-    this.clickedLine1 = null;
-    this.clickedLine2 = null;
-    this.clickedLine3 = null;
+    this.renderer = undefined;
+    this.clickedLine1 = undefined;
+    this.clickedLine2 = undefined;
+    this.clickedLine3 = undefined;
   }
 
   ngOnInit(): void {
@@ -98,6 +98,9 @@ length := p1.Distance(p2)`;
   ngAfterViewInit(): void {
     super.AfterViewInit();
     // Unit sphere
+    if (this.elUnitSphere === undefined) {
+      throw new Error('elUnitSphere is undefined');
+    }
     const el = this.elUnitSphere.nativeElement as HTMLElement;
     this.renderer = new THREE.WebGLRenderer();
     this.scene = new THREE.Scene();
@@ -156,6 +159,24 @@ length := p1.Distance(p2)`;
       () => {
         rotationY += 0.01;
         sphere.rotation.y = rotationY;
+        if (this.groupedPoint === undefined) {
+          throw new Error('groupedPoint is undefined');
+        }
+        if (this.clickedAsThreeObjectMesh === undefined) {
+          throw new Error('clickedAsThreeObjectMesh is undefined');
+        }
+        if (this.clickedLine1 === undefined) {
+          throw new Error('clickedLine1 is undefined');
+        }
+        if (this.renderer === undefined) {
+          throw new Error('renderer is undefined');
+        }
+        if (this.scene === undefined) {
+          throw new Error('scene is undefined');
+        }
+        if (this.camera === undefined) {
+          throw new Error('camera is undefined');
+        }
         this.groupedPoint.rotation.y = rotationY;
         const g1 = new THREE.BufferGeometry();
         g1.setFromPoints(
@@ -176,6 +197,9 @@ length := p1.Distance(p2)`;
   }
 
   async clickMap1(v: google.maps.MouseEvent): Promise<void> {
+    if (this.clickedAsThreeObjectMesh === undefined) {
+      throw new Error('clickedAsThreeObjectMesh is undefined');
+    }
     const ll = v.latLng;
     const pair = await this.api.getFnPointFromLatLng(ll.lat(), ll.lng());
     this.clicked = {

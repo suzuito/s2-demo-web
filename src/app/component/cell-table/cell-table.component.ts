@@ -24,6 +24,7 @@ export class CellTableComponent implements OnInit {
   public clickGetChildren: EventEmitter<CellLiteral>;
 
   constructor() {
+    this.cells = [];
     this.disabledGetChildrenButton = false;
     this.mouseOutRow = new EventEmitter<CellLiteral>();
     this.mouseOverRow = new EventEmitter<CellLiteral>();

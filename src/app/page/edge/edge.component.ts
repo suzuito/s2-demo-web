@@ -26,7 +26,7 @@ p2 := s2.PointFromLatLng(ll2)
 length := p1.Distance(p2)`;
 
   @ViewChild('map1')
-  public map1: google.maps.Map;
+  public map1: google.maps.Map | undefined;
   public map1Markers: Array<MarkerLiteral>;
   public map1Polylines: Array<PolylineLiteral>;
   public map1Edges: Array<EdgeLiteral>;
@@ -35,6 +35,10 @@ length := p1.Distance(p2)`;
   constructor(
     private api: ApiService,
   ) {
+    this.map1Markers = [];
+    this.map1Polylines = [];
+    this.map1Edges = [];
+    this.map1S2EdgeNews = [];
   }
 
   ngOnInit(): void {
@@ -94,9 +98,6 @@ length := p1.Distance(p2)`;
     return this.map1Markers[i];
   }
   map1EdgeNew(i: number): EdgeNew {
-    if (i >= this.map1S2EdgeNews.length) {
-      return null;
-    }
     return this.map1S2EdgeNews[i];
   }
   map1DragendMarker(e: google.maps.MouseEvent, i: number): void {

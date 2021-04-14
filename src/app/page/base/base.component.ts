@@ -43,7 +43,11 @@ export class BaseComponent {
     if (!this.fragment) {
       return;
     }
-    document.getElementById(`${this.fragment}`).scrollIntoView();
+    const el = document.getElementById(`${this.fragment}`);
+    if (el === null) {
+      throw new Error(`Element "${this.fragment}" is not found`);
+    }
+    el.scrollIntoView();
   }
 
 }

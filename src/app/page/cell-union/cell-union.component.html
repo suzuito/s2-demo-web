@@ -45,7 +45,7 @@
             <button mat-button (click)='map1ClickRegionCoverer()'>Exec</button>
         </div>
 
-        <google-map #map1 width='100%' height='300px' [zoom]='12' [center]='map1Center'>
+        <google-map #map1 *ngIf='map1Center' width='100%' height='300px' [zoom]='12' [center]='map1Center'>
             <map-polygon *ngIf='map1RegionPolyline' [paths]='map1RegionPolyline.path'
                 [options]='map1RegionPolyline.options'>
             </map-polygon>

@@ -23,7 +23,7 @@ export class GoogleMapScriptLoaderService {
         script.async = true;
         script.id = id;
         // Attach your callback function to the `window` object
-        globalThis.initMap = () => {
+        (globalThis as any).initMap = () => {
           console.log('JS API is loaded and available');
           this.loaded = true;
           resolve();
