@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build-godzilla": "ng build --configuration=godzilla",
+    "build-godzilla": "ng build --configuration=godzilla && cp sitemap.xml dist/s2-demo-web/sitemap.xml",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
