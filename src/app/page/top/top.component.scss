@@ -1,3 +1,5 @@
+@import '../../common';
+
 mat-sidenav-container {
     position: absolute;
     width: 100%;
@@ -21,7 +23,7 @@ mat-toolbar {
     top: 20px;
     bottom: 0px;
     left: 0px;
-    right: 0px;
+    width: $page-width;
     overflow: scroll;
 }
 

@@ -10,6 +10,8 @@ import { CellComponent } from './page/cell/cell.component';
 import { CellUnionComponent } from './page/cell-union/cell-union.component';
 import { DistanceComponent } from './page/distance/distance.component';
 import { RegionComponent } from './page/region/region.component';
+import { SandboxComponent } from './page/sandbox/sandbox.component';
+import { LatlngComponent } from './page/latlng/latlng.component';
 
 
 const routes: Routes = [
@@ -23,6 +25,10 @@ const routes: Routes = [
       {
         path: '',
         component: SummaryComponent,
+      },
+      {
+        path: 'latlng',
+        component: LatlngComponent,
       },
       {
         path: 'point',
@@ -51,7 +57,11 @@ const routes: Routes = [
       {
         path: 'region',
         component: RegionComponent,
-      }
+      },
+      {
+        path: 'sandbox',
+        component: SandboxComponent,
+      },
     ],
   }
 ];

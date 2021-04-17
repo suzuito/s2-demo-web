@@ -57,6 +57,9 @@ import { BaseComponent } from './page/base/base.component';
 import { DistanceComponent } from './page/distance/distance.component';
 import { RegionComponent } from './page/region/region.component';
 import { AboutComponent } from './component/about/about.component';
+import { SandboxComponent } from './page/sandbox/sandbox.component';
+import { GithubSourceCodeComponent } from './component/github-source-code/github-source-code.component';
+import { LatlngComponent } from './page/latlng/latlng.component';
 
 
 export function getHighlightLanguages(): any {
@@ -81,6 +84,9 @@ export function getHighlightLanguages(): any {
     DistanceComponent,
     RegionComponent,
     AboutComponent,
+    SandboxComponent,
+    GithubSourceCodeComponent,
+    LatlngComponent,
   ],
   imports: [
     BrowserModule,

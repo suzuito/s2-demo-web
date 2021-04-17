@@ -13,7 +13,7 @@ function u(origin: string, path: string): string {
   return `${origin}${path}`;
 }
 
-class OptBuilder {
+export class OptBuilder {
   private o: any;
   constructor() {
     this.o = {

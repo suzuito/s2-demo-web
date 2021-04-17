@@ -41,13 +41,9 @@ export class TopComponent implements OnInit, AfterViewInit {
         ],
       },
       {
-        name: '座標系',
-        url: 'point',
-        children: [
-          { name: 's1.Angle', },
-          { name: 's2.LatLng', },
-          { name: 's2.Point', },
-        ],
+        name: '緯度経度',
+        url: 'latlng',
+        children: [],
       },
       {
         name: '距離',
@@ -83,21 +79,6 @@ export class TopComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-  }
-
-  toggleTOC(): void {
-    if (this.opened) {
-      this.opened = false;
-    } else {
-      this.opened = true;
-    }
-  }
-
-  get stringIsOpened(): string {
-    if (this.opened) {
-      return 'を閉じる';
-    }
-    return '';
   }
 
   clickAbout(): void {

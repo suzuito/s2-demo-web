@@ -1,0 +1,15 @@
+
+
+$page-width: 1000px;
+
+$page-statement-width: $page-width / 2;
+$page-source-code-width: $page-width / 2;
+
+@mixin page-statement {
+    width: $page-statement-width;
+    padding-right: 10px;
+}
+
+@mixin page-source-code {
+    width: $page-source-code-width;
+}
