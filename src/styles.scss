@@ -10,4 +10,24 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+$page-width: 1000px;
+
+$page-statement-width: $page-width / 2;
+$page-source-code-width: $page-width / 2;
+
+.part-page {
+    display: flex;
+    flex-direction: row;
+}
+
+.page-statement {
+    width: $page-statement-width;
+    padding-right: 10px;
+}
+
+.page-source-code {
+    width: $page-source-code-width;
+}
+
+
 @import '~highlight.js/styles/github.css';

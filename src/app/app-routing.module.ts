@@ -10,6 +10,11 @@ import { CellComponent } from './page/cell/cell.component';
 import { CellUnionComponent } from './page/cell-union/cell-union.component';
 import { DistanceComponent } from './page/distance/distance.component';
 import { RegionComponent } from './page/region/region.component';
+import { SandboxComponent } from './page/sandbox/sandbox.component';
+import { LatlngComponent } from './page/latlng/latlng.component';
+import { GeometryComponent } from './page/geometry/geometry.component';
+import { LoopComponent } from './page/loop/loop.component';
+import { CcwComponent } from './page/ccw/ccw.component';
 
 
 const routes: Routes = [
@@ -25,8 +30,24 @@ const routes: Routes = [
         component: SummaryComponent,
       },
       {
+        path: 'latlng',
+        component: LatlngComponent,
+      },
+      {
+        path: 'geometry',
+        component: GeometryComponent,
+      },
+      {
+        path: 'ccw',
+        component: CcwComponent,
+      },
+      {
         path: 'point',
         component: PointComponent,
+      },
+      {
+        path: 'loop',
+        component: LoopComponent,
       },
       {
         path: 'edge',
@@ -51,7 +72,11 @@ const routes: Routes = [
       {
         path: 'region',
         component: RegionComponent,
-      }
+      },
+      {
+        path: 'sandbox',
+        component: SandboxComponent,
+      },
     ],
   }
 ];

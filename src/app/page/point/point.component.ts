@@ -8,6 +8,7 @@ import {
 import { S2Point, S2LatLng } from 'src/app/entity/s2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '../base/base.component';
+import { GitService } from 'src/app/git.service';
 
 @Component({
   selector: 'app-point',
@@ -40,8 +41,20 @@ a.Degrees()            // 180
   Lat, Lng s1.Angle
 }`;
 
-  public code2 = `// LatLng構造体の初期化
-ll := s2.LatLngFromDegrees(35.6804, 139.7690)`;
+  public code2 = `package main
+
+  import (
+    "fmt"
+  
+    "github.com/golang/geo/s2"
+  )
+  
+  func main() {
+    latlng := s2.LatLngFromDegrees(35.6938, 139.7034)
+    fmt.Printf("緯度=%f 経度=%f （ラジアン表現）\n", latlng.Lat, latlng.Lng)
+    fmt.Printf("緯度=%f 経度=%f （度数表現）\n", latlng.Lat.Degrees(), latlng.Lng.Degrees())
+  }
+  `;
 
   public code3 = `type Point struct {
   r3.Vector
