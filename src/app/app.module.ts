@@ -60,6 +60,10 @@ import { AboutComponent } from './component/about/about.component';
 import { SandboxComponent } from './page/sandbox/sandbox.component';
 import { GithubSourceCodeComponent } from './component/github-source-code/github-source-code.component';
 import { LatlngComponent } from './page/latlng/latlng.component';
+import { GeometryComponent } from './page/geometry/geometry.component';
+import { LoopComponent } from './page/loop/loop.component';
+import { CcwComponent } from './page/ccw/ccw.component';
+import { Map1Component } from './component/map1/map1.component';
 
 
 export function getHighlightLanguages(): any {
@@ -87,6 +91,10 @@ export function getHighlightLanguages(): any {
     SandboxComponent,
     GithubSourceCodeComponent,
     LatlngComponent,
+    GeometryComponent,
+    LoopComponent,
+    CcwComponent,
+    Map1Component,
   ],
   imports: [
     BrowserModule,

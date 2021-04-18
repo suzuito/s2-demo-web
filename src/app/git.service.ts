@@ -24,4 +24,15 @@ export class GitService {
       return v;
     });
   }
+
+  async getGeoJSON(p: string): Promise<object> {
+    return this.http.get(
+      `https://raw.githubusercontent.com/${p}`,
+      new OptBuilder()
+        .textResponseBody()
+        .gen()
+    ).toPromise().then((v: any) => {
+      return JSON.parse(v);
+    });
+  }
 }

@@ -83,42 +83,5 @@
                 </app-github-source-code>
             </div>
         </div>
-
-        <h1 appHeadRef id='s2.Point'></h1>
-        <p>
-            <app-link href='https://pkg.go.dev/github.com/golang/geo/s2#Point'>
-                s2.Point
-            </app-link>
-            構造体は、s2を使用していると何度も登場します。
-            この構造体は LatLng 構造体とはどう違うのでしょうか？
-            それを見ていきましょう。
-        </p>
-
-        <p>
-            s2.Point は単位球面上の座標を 3 次元ベクトルで表現します。
-            単位球とは、半径の長さが 1 である球です。
-            従って、s2.Point のベクトルの成分 x, y, z の値は 0 から 1 の範囲に収まります。
-            また、このベクトルの長さは必ず 1 となります。
-        </p>
-
-        <h2 appHeadRef id='s2.PointFromLatLng'>
-        </h2>
-
-        <p>
-            <app-link href='https://pkg.go.dev/github.com/golang/geo/s2#PointFromLatLng'>s2.PointFromLatLng
-            </app-link>関数は s2.LatLng から s2.Point 構造体のインスタンスを生成します。
-        </p>
-
-        <p>
-            <app-link href='https://pkg.go.dev/github.com/golang/geo/s2#PointFromCoords'>s2.PointFromCoords
-            </app-link>関数は 3 次元ベクトルから s2.Point 構造体のインスタンスを生成します。
-            入力として与えられたベクトルの長さが 1 ではなかった場合、長さ 1 のベクトルになるように変換してから、インスタンスを生成します。
-        </p>
-        <div class='page-source-code'>
-            <app-github-source-code path='suzuito/s2-demo-go/main/page/pagepoint02/main.go' lang='language-go'>
-            </app-github-source-code>
-            <app-github-source-code path='suzuito/s2-demo-go/main/page/pagepoint02/result.txt' lang='language-zsh'>
-            </app-github-source-code>
-        </div>
     </mat-card-content>
 </mat-card>

@@ -1,4 +1,4 @@
-@import '../../common';
+@import '../../../styles';
 
 mat-sidenav-container {
     position: absolute;
@@ -13,7 +13,7 @@ mat-sidenav-content {
 mat-toolbar {
     position: absolute;
     top: 0px;
-    height: 20px;
+    height: 20px !important;
     left: 0px;
     right: 0px;
 }
@@ -33,6 +33,11 @@ mat-toolbar {
 
 .link {
     cursor: pointer;
+}
+
+.toc-row {
+    padding-bottom: 10px;
+    width: 300px;
 }
 
 .toc-sub {

@@ -1,0 +1,65 @@
+<mat-card>
+    <mat-card-content>
+        <div>
+            <h1 appHeadRef id='3 つの点の回転方向'></h1>
+
+            <p>
+                3 つの点には回転方向を定義できます。
+                点列が右回りか、左回りか、という違いが、幾何学計算上では重要です。
+                右回りのとき時計回り（Clockwise）、左回りのとき（Counter clockwise）と呼びます。
+                Counter clockwise の略記が ccw です。
+                ccwという略記はs2のリファレンスの中によく登場しますので覚えておきましょう。
+            </p>
+
+            <p>
+                下の図中の点列「緑→赤→青」は左回り、反時計回り、Counter clockwise、ccw。
+                点列「青→赤→緑」は右回り、時計回り、Clockwise。
+                <img src='assets/ccw.png' />
+            </p>
+
+            <p>
+                ところで、なぜ点列の回転方向が幾何学計算上では重要なのでしょうか？
+            </p>
+
+            <p>
+                点列の回転方向により、多角形の表の裏が定義できるからです。これについては、後で説明します。
+            </p>
+        </div>
+        <div class='part-page'>
+            <div class='page-statement'>
+                <h1 appHeadRef id='s2.RobustSign'></h1>
+
+                <p>
+                    <app-link href='https://pkg.go.dev/github.com/golang/geo/s2#RobustSign'>s2.RobustSign</app-link>関数は
+                    3 つの点の回転方向を返します。
+                    この関数の返り値の値は次のようになります。
+                </p>
+
+                <ul>
+                    <li>3 つの点が時計回りである場合 -1</li>
+                    <li>3 つの点が一直線上に並んだ場合 0</li>
+                    <li>3 つの点が反時計回りである場合 1</li>
+                </ul>
+
+                <h1 appHeadRef id='s2.OrderedCCW'></h1>
+
+                <p>
+                    <app-link href='https://pkg.go.dev/github.com/golang/geo/s2#OrderedCCW'>s2.OrderedCCW</app-link>関数は
+                    3 つの点の回転方向が、ある 1 つの点から見たときに、反時計回りであるかどうか？を判定します。
+                </p>
+            </div>
+            <div class='page-source-code'>
+                <div class='page-source-code'>
+                    <app-github-source-code path='suzuito/s2-demo-go/main/page/pageccw01/main.go' lang='language-go'>
+                    </app-github-source-code>
+                    <app-github-source-code path='suzuito/s2-demo-go/main/page/pageccw01/result.txt' lang='language-go'>
+                    </app-github-source-code>
+                    <div style='width: 100%; height: 500px;'>
+                        <app-map1 path='suzuito/s2-demo-go/main/page/pageccw01/result.geojson' mstyle='map1'
+                            [center]='{ lat: 40.2048, lng: 138.2529 }'></app-map1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

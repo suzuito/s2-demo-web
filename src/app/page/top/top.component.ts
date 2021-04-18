@@ -5,8 +5,10 @@ import { AboutComponent } from 'src/app/component/about/about.component';
 
 interface TableOfContent {
   name: string;
-  url?: string;
-  children?: Array<TableOfContent>;
+  disabled?: boolean | undefined;
+  url?: string | undefined;
+  fragment?: boolean | undefined;
+  children?: Array<TableOfContent> | undefined;
 }
 
 
@@ -33,11 +35,11 @@ export class TopComponent implements OnInit, AfterViewInit {
         name: '概要',
         url: '',
         children: [
-          { name: 's2とは何か？', },
-          { name: 's2はデータベースではない', },
-          { name: 'Cellとは何か？', },
-          { name: 's2の利用実績', },
-          { name: 's2がサポートする言語', },
+          { fragment: true, name: 's2とは何か？', },
+          { fragment: true, name: 's2はデータベースではない', },
+          { fragment: true, name: 'Cellとは何か？', },
+          { fragment: true, name: 's2の利用実績', },
+          { fragment: true, name: 's2がサポートする言語', },
         ],
       },
       {
@@ -46,28 +48,39 @@ export class TopComponent implements OnInit, AfterViewInit {
         children: [],
       },
       {
-        name: '距離',
+        name: '幾何学計算',
+        url: 'geometry',
+        children: [
+          {
+            url: 'point',
+            name: 's2.Point',
+          },
+          {
+            url: 'ccw',
+            name: '点列の回転方向（時計回り 反時計回り）',
+          },
+          {
+            url: 'points',
+            name: '2点間の距離（工事中）',
+          },
+          {
+            url: 'loop',
+            name: 's2.Loop（工事中）',
+          }
+        ],
+      },
+      {
+        name: '距離（工事中）',
         url: 'distance',
-        children: [
-          { name: 's1.Angle', },
-        ],
       },
       {
-        name: '領域',
-        url: 'region',
-        children: [
-          { name: 's2.Cap', },
-          { name: 's2.Loop', },
-        ],
-      },
-      {
-        name: 'Cell',
+        name: 'Cell（工事中）',
         url: 'cell',
         children: [
         ],
       },
       {
-        name: 'UnionCell',
+        name: 'UnionCell（工事中）',
         url: 'cell_union',
         children: [
         ],
@@ -83,5 +96,23 @@ export class TopComponent implements OnInit, AfterViewInit {
 
   clickAbout(): void {
     this.dialog.open(AboutComponent);
+  }
+
+  clickLink(v: TableOfContent): void {
+    if (v.disabled === true) {
+      return;
+    }
+    this.router.navigate([
+      v.url !== undefined ? v.url : '',
+    ], {
+      fragment: v.fragment === true ? v.name : undefined,
+    });
+  }
+
+  getLinkName(v: TableOfContent): string {
+    if (v.fragment) {
+      return `#${v.name}`;
+    }
+    return v.name;
   }
 }
