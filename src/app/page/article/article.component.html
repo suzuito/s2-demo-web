@@ -1,0 +1,8 @@
+<mat-card>
+    <mat-card-content>
+        <div [innerHTML]='articleHTML'></div>
+        <div class='block' *ngFor='let block of blocks'>
+            <app-article-block [block]='block'></app-article-block>
+        </div>
+    </mat-card-content>
+</mat-card>

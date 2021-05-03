@@ -64,6 +64,12 @@ import { GeometryComponent } from './page/geometry/geometry.component';
 import { LoopComponent } from './page/loop/loop.component';
 import { CcwComponent } from './page/ccw/ccw.component';
 import { Map1Component } from './component/map1/map1.component';
+import { ApiService } from './service/api.service';
+import { HttpApiService } from './http/http-api.service';
+import { IndexComponent } from './component/index/index.component';
+import { ArticleComponent } from './page/article/article.component';
+import { ArticleBlockComponent } from './page/article/article-block/article-block.component';
+import { ArticleBlockMapComponent } from './page/article/article-block-map/article-block-map.component';
 
 
 export function getHighlightLanguages(): any {
@@ -95,6 +101,10 @@ export function getHighlightLanguages(): any {
     LoopComponent,
     CcwComponent,
     Map1Component,
+    IndexComponent,
+    ArticleComponent,
+    ArticleBlockComponent,
+    ArticleBlockMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,6 +135,7 @@ export function getHighlightLanguages(): any {
         lineNumbers: true,
       }
     },
+    { provide: ApiService, useClass: HttpApiService },
   ],
   bootstrap: [AppComponent]
 })

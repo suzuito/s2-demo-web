@@ -15,6 +15,8 @@ import { LatlngComponent } from './page/latlng/latlng.component';
 import { GeometryComponent } from './page/geometry/geometry.component';
 import { LoopComponent } from './page/loop/loop.component';
 import { CcwComponent } from './page/ccw/ccw.component';
+import { ArticleComponent } from './page/article/article.component';
+import { ArticleGuard } from './page/article/article.guard';
 
 
 const routes: Routes = [
@@ -25,6 +27,13 @@ const routes: Routes = [
       TopGuard,
     ],
     children: [
+      {
+        path: 'article/:articleId',
+        component: ArticleComponent,
+        canActivate: [
+          ArticleGuard,
+        ],
+      },
       {
         path: '',
         component: SummaryComponent,

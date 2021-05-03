@@ -29,5 +29,17 @@ $page-source-code-width: $page-width / 2;
     width: $page-source-code-width;
 }
 
+a.article-link {
+    text-decoration: underline;
+    color: inherit;
+}
+a.article-link:link {
+}
+a.article-link:visited {
+}
+a.article-link:hover {
+}
+a.article-link:active {
+}
 
 @import '~highlight.js/styles/github.css';

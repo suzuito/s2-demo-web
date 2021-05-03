@@ -1,14 +1,7 @@
 <mat-sidenav-container>
     <mat-sidenav mode='side' [opened]='opened'>
         <mat-card style='height: 100%;'>
-            <div *ngFor='let v of toc' class='toc-row'>
-                <div class='link' (click)='clickLink(v)'>{{getLinkName(v)}}</div>
-                <div *ngFor='let u of v.children' (click)='clickLink(u)' class='link toc-sub'>
-                    <div>
-                        {{getLinkName(u)}}
-                    </div>
-                </div>
-            </div>
+            <app-index [root]='rootIndex' (clickLink)='clickIndex($event)'></app-index>
         </mat-card>
     </mat-sidenav>
     <mat-sidenav-content>
