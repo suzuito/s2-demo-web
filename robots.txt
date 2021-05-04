@@ -1,1 +1,1 @@
-Sitemap: https://blog.tach.dev/sitemap.xml
+Sitemap: https://s2-sandbox.tach.dev/sitemap.xml
