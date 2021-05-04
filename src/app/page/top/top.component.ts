@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AboutComponent } from 'src/app/component/about/about.component';
+import { ArticleListItem } from 'src/app/entity/article_list';
+import { TopService } from './top.service';
 
 interface TableOfContent {
   name: string;
@@ -20,7 +22,6 @@ interface TableOfContent {
 export class TopComponent implements OnInit, AfterViewInit {
 
   public opened: boolean;
-  public toc: Array<TableOfContent>;
 
   @ViewChild('scroller')
   private elScroller: ElementRef<HTMLDivElement> | undefined;
@@ -28,70 +29,27 @@ export class TopComponent implements OnInit, AfterViewInit {
   constructor(
     private dialog: MatDialog,
     private router: Router,
+    private topService: TopService,
   ) {
     this.opened = true;
-    this.toc = [
-      {
-        name: '概要',
-        url: '',
-        children: [
-          { fragment: true, name: 's2とは何か？', },
-          { fragment: true, name: 's2はデータベースではない', },
-          { fragment: true, name: 'Cellとは何か？', },
-          { fragment: true, name: 's2の利用実績', },
-          { fragment: true, name: 's2がサポートする言語', },
-        ],
-      },
-      {
-        name: '緯度経度',
-        url: 'latlng',
-        children: [],
-      },
-      {
-        name: '幾何学計算',
-        url: 'geometry',
-        children: [
-          {
-            url: 'point',
-            name: 's2.Point',
-          },
-          {
-            url: 'ccw',
-            name: '点列の回転方向（時計回り 反時計回り）',
-          },
-          {
-            url: 'points',
-            name: '2点間の距離（工事中）',
-          },
-          {
-            url: 'loop',
-            name: 's2.Loop（工事中）',
-          }
-        ],
-      },
-      {
-        name: '距離（工事中）',
-        url: 'distance',
-      },
-      {
-        name: 'Cell（工事中）',
-        url: 'cell',
-        children: [
-        ],
-      },
-      {
-        name: 'UnionCell（工事中）',
-        url: 'cell_union',
-        children: [
-        ],
-      },
-    ];
+  }
+
+  get rootIndex(): ArticleListItem | undefined {
+    return this.topService.index;
   }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
+  }
+
+  clickIndex(v: ArticleListItem): void {
+    this.router.navigate([
+      'article', v.articleId,
+    ], {
+      fragment: v.anchor !== '' ? v.anchor : undefined,
+    });
   }
 
   clickAbout(): void {

@@ -1,0 +1,33 @@
+
+.block {
+    position: relative;
+}
+
+.text-block {}
+
+.source_and_text-block {
+    display: flex;
+}
+
+.block-left {
+    width: 50%;
+    overflow: scroll;
+}
+
+.block-right {
+    width: 50%;
+    overflow: scroll;
+    padding-left: 6px;
+}
+
+.source-code {
+    font-size: 12px;
+}
+
+.result-text {
+    font-size: 12px;
+}
+
+.map {
+    width: 100%;
+}

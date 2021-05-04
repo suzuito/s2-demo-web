@@ -42,28 +42,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TopComponent } from './page/top/top.component';
-import { SummaryComponent } from './page/summary/summary.component';
-import { PointComponent } from './page/point/point.component';
-import { RegionRectComponent } from './page/region-rect/region-rect.component';
-import { EdgeComponent } from './page/edge/edge.component';
-import { CellComponent } from './page/cell/cell.component';
 import { FormsModule } from '@angular/forms';
-import { CellUnionComponent } from './page/cell-union/cell-union.component';
-import { LinkComponent } from './component/link/link.component';
-import { CellTableComponent } from './component/cell-table/cell-table.component';
-import { HeadRefDirective } from './component/head-ref.directive';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { BaseComponent } from './page/base/base.component';
-import { DistanceComponent } from './page/distance/distance.component';
-import { RegionComponent } from './page/region/region.component';
 import { AboutComponent } from './component/about/about.component';
 import { SandboxComponent } from './page/sandbox/sandbox.component';
-import { GithubSourceCodeComponent } from './component/github-source-code/github-source-code.component';
-import { LatlngComponent } from './page/latlng/latlng.component';
-import { GeometryComponent } from './page/geometry/geometry.component';
-import { LoopComponent } from './page/loop/loop.component';
-import { CcwComponent } from './page/ccw/ccw.component';
 import { Map1Component } from './component/map1/map1.component';
+import { ApiService } from './service/api.service';
+import { HttpApiService } from './http/http-api.service';
+import { IndexComponent } from './component/index/index.component';
+import { ArticleComponent } from './page/article/article.component';
+import { ArticleBlockComponent } from './page/article/article-block/article-block.component';
+import { ArticleBlockMapComponent } from './page/article/article-block-map/article-block-map.component';
 
 
 export function getHighlightLanguages(): any {
@@ -76,25 +64,13 @@ export function getHighlightLanguages(): any {
   declarations: [
     AppComponent,
     TopComponent,
-    SummaryComponent,
-    PointComponent,
-    RegionRectComponent,
-    EdgeComponent,
-    CellComponent,
-    CellUnionComponent,
-    LinkComponent,
-    CellTableComponent,
-    HeadRefDirective,
-    DistanceComponent,
-    RegionComponent,
     AboutComponent,
     SandboxComponent,
-    GithubSourceCodeComponent,
-    LatlngComponent,
-    GeometryComponent,
-    LoopComponent,
-    CcwComponent,
     Map1Component,
+    IndexComponent,
+    ArticleComponent,
+    ArticleBlockComponent,
+    ArticleBlockMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,6 +101,7 @@ export function getHighlightLanguages(): any {
         lineNumbers: true,
       }
     },
+    { provide: ApiService, useClass: HttpApiService },
   ],
   bootstrap: [AppComponent]
 })

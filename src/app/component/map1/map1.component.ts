@@ -1,20 +1,17 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
-import { GitService } from 'src/app/git.service';
-import { AvailableGoogleMapDLStyle, newGoogleMapDLStyle } from 'src/app/gmap/data_layer_style';
+import { FeatureCollection } from 'geojson';
+import { newGoogleMapDLStyle } from 'src/app/gmap/data_layer_style';
 
 @Component({
   selector: 'app-map1',
   templateUrl: './map1.component.html',
   styleUrls: ['./map1.component.scss']
 })
-export class Map1Component implements OnInit, AfterViewInit {
+export class Map1Component implements OnInit, AfterViewInit, OnChanges {
 
   @ViewChild('m')
   m: GoogleMap | undefined;
-
-  @Input()
-  path: string;
 
   @Input()
   mstyle: string;
@@ -22,33 +19,50 @@ export class Map1Component implements OnInit, AfterViewInit {
   @Input()
   center: google.maps.LatLngLiteral;
 
+  @Input()
+  zoom: number;
+
+  @Input()
+  fc: FeatureCollection | undefined;
+
   constructor(
-    private gitService: GitService,
   ) {
-    this.path = '';
     this.mstyle = '';
     this.center = { lat: 0, lng: 0 };
+    this.zoom = 5;
   }
 
   ngOnInit(): void {
   }
 
-  async ngAfterViewInit(): Promise<void> {
-    if (this.m === undefined) {
-      throw new Error('this.m is undefined');
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.fc) {
+      this.redisplay();
     }
-    if (this.path === '') {
-      throw new Error('this.path is empty string');
+    if (changes.center) {
+      this.redisplay();
+    }
+  }
+
+  async ngAfterViewInit(): Promise<void> {
+    this.redisplay();
+  }
+
+  private redisplay(): void {
+    if (this.fc === undefined) {
+      return;
+    }
+    if (this.m === undefined) {
+      return;
     }
     if (this.mstyle !== '') {
       this.m.data.setStyle(newGoogleMapDLStyle(this.mstyle).rule);
     }
     this.m.options = {
-      // center: { lat: 36.2048, lng: 138.2529 },
       center: this.center,
-      zoom: 5,
+      zoom: this.zoom,
     };
-    this.m.data.addGeoJson(await this.gitService.getGeoJSON(this.path));
+    this.m.data.addGeoJson(this.fc);
   }
 
 }

@@ -1,0 +1,11 @@
+<div class='block-text' [innerHTML]='blockHTML' *ngIf='block !== undefined && block.type === "text"'>
+</div>
+<div class='block-source-and-text' *ngIf='block !== undefined && block.type === "source_and_text"'>
+    <div class='block-left' [innerHTML]='blockHTML'></div>
+    <div class='block-right'>
+        <pre><code [highlight]='blockSourceCode' class='source-code language-go'></code></pre>
+        <pre><code [highlight]='blockResultText' class='result-text'></code></pre>
+        <google-map #m width='100%' [height]='height'>
+        </google-map>
+    </div>
+</div>

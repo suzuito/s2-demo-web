@@ -1,0 +1,6 @@
+<div class='main' *ngIf='root' [style.padding-left]='paddingLeft' [style.padding-top]='paddingTop'>
+    <div class='link' (click)='clickLink.emit(root)'>{{title}}</div>
+    <app-index *ngFor='let child of root.children' [root]='child' [depth]='depth+1'
+        (clickLink)='clickLink.emit($event)'>
+    </app-index>
+</div>

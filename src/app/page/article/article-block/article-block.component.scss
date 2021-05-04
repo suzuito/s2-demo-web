@@ -1,0 +1,24 @@
+.block-text {}
+
+.block-source-and-text {
+    display: flex;
+}
+
+.block-left {
+    width: 50%;
+    overflow: scroll;
+}
+
+.block-right {
+    width: 50%;
+    overflow: scroll;
+    padding-left: 6px;
+}
+
+.source-code {
+    font-size: 12px;
+}
+
+.result-text {
+    font-size: 12px;
+}
