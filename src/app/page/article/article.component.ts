@@ -4,6 +4,7 @@ import { SafeHtml, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleBlock } from 'src/app/entity/article';
 import { PrintGeoJSONOption } from 'src/app/entity/result';
+import { LdJSONGenerator, LdJsonService } from 'src/app/ld-json.service';
 import { MetaService, NewMetas, SiteLocale, SiteOrigin, SiteName } from 'src/app/meta.service';
 import { ArticleService } from './article.service';
 
@@ -17,8 +18,11 @@ export class ArticleComponent implements OnInit {
   @ViewChild('m')
   m: GoogleMap | undefined;
 
+  public ldJSONGenerator: LdJSONGenerator;
+
   constructor(
     private articleService: ArticleService,
+    private ldJSONService: LdJsonService,
     private route: ActivatedRoute,
     private titleService: Title,
     private metaService: MetaService,
@@ -32,19 +36,28 @@ export class ArticleComponent implements OnInit {
         if (this.articleService.article === undefined) {
           return;
         }
-        this.titleService.setTitle(`${SiteName} | ${this.articleService.article.title}`);
+        const siteUrl = `${SiteOrigin}${location.pathname}`;
+        const siteTitle = `${SiteName} | ${this.articleService.article.title}`;
+        this.titleService.setTitle(siteTitle);
         this.metaService.setMetas(NewMetas({
           ogTitle: this.articleService.article.title,
           ogLocale: SiteLocale,
           ogDescription: this.articleService.article.description,
-          ogUrl: `${SiteOrigin}${location.pathname}`,
+          ogUrl: siteUrl,
           ogSiteName: SiteName,
           ogType: 'article',
           description: this.articleService.article.description,
           ogImage: `https://${SiteOrigin}/assets/ss.jpg`, // FIXME
         }));
+        this.ldJSONGenerator.addWebPage(
+          siteUrl,
+          SiteName,
+          siteTitle,
+          this.articleService.article.description,
+        );
       },
     });
+    this.ldJSONGenerator = this.ldJSONService.generator();
   }
 
   ngOnInit(): void {
@@ -76,5 +89,9 @@ export class ArticleComponent implements OnInit {
 
   articleBlockResultPrintGeoJSONOption(blockId: string): PrintGeoJSONOption {
     return this.articleService.getArticleBlockResultPrintGeoJSONOption(blockId);
+  }
+
+  get ldJSON(): SafeHtml {
+    return this.ldJSONGenerator.generate();
   }
 }
