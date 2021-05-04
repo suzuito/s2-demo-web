@@ -64,6 +64,7 @@ export class ArticleBlockComponent implements OnInit, AfterViewInit {
           zoom: o.zoom,
         };
         this.m.data.addGeoJson(v);
+        return;
       });
     });
   }

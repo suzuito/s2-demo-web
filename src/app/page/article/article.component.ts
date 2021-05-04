@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
-import { SafeHtml } from '@angular/platform-browser';
+import { SafeHtml, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleBlock } from 'src/app/entity/article';
 import { PrintGeoJSONOption } from 'src/app/entity/result';
@@ -19,9 +19,19 @@ export class ArticleComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
+    private titleService: Title,
   ) {
     this.route.url.subscribe(v => {
       this.articleService.fetchArticle();
+    });
+    this.articleService.event.subscribe({
+      next: (v) => {
+        console.log(v);
+        if (this.articleService.article === undefined) {
+          return;
+        }
+        this.titleService.setTitle(`s2 Sandbox | ${this.articleService.article.title}`);
+      },
     });
   }
 

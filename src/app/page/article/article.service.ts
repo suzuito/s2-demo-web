@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
 import { Article, ArticleBlock } from 'src/app/entity/article';
 import { PrintGeoJSONOption } from 'src/app/entity/result';
 import { ApiService } from 'src/app/service/api.service';
+
+export interface ArticleServiceEvent {
+  type: 'updated_article';
+}
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +26,8 @@ export class ArticleService {
   private articleBlocksResultFeatureCollection: Map<string, GeoJSON.FeatureCollection>;
   private articleBlocksResultPrintGeoJSONOption: Map<string, PrintGeoJSONOption>;
 
+  public event: Subject<ArticleServiceEvent>;
+
   constructor(
     private api: ApiService,
     private sanitizer: DomSanitizer,
@@ -32,6 +39,7 @@ export class ArticleService {
     this.articleBlocksResultText = new Map<string, string>();
     this.articleBlocksResultFeatureCollection = new Map<string, GeoJSON.FeatureCollection>();
     this.articleBlocksResultPrintGeoJSONOption = new Map<string, PrintGeoJSONOption>();
+    this.event = new Subject<ArticleServiceEvent>();
   }
 
   clear(): void {
@@ -47,6 +55,7 @@ export class ArticleService {
   async fetchArticle(): Promise<void> {
     this.article = await this.api.getArticle(this.articleId);
     this.articleHTML = this.sanitizer.bypassSecurityTrustHtml(await this.api.getArticleHTML(this.articleId));
+    this.event.next({ type: 'updated_article' });
   }
 
   async fetch(): Promise<void> {
