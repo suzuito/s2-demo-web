@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FeatureCollection } from 'geojson';
 import { environment } from 'src/environments/environment';
 import { Article } from '../entity/article';
 import { ArticleListItem } from '../entity/article_list';
@@ -75,7 +76,7 @@ export class HttpApiService extends ApiService {
     ).toPromise().then((v: any) => v).catch(responseAllowHTTPError<string>([404], ''));
   }
 
-  async getArticleBlockResultFeatureCollection(articleId: string, blockId: string): Promise<GeoJSON.FeatureCollection> {
+  async getArticleBlockResultFeatureCollection(articleId: string, blockId: string): Promise<FeatureCollection> {
     return this.http.get(
       u(environment.urlArticleStorage, `/${articleId}/${blockId}/result.geojson`),
       new OptBuilder()

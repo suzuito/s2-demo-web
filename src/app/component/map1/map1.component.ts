@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
-import { GitService } from 'src/app/git.service';
-import { AvailableGoogleMapDLStyle, newGoogleMapDLStyle } from 'src/app/gmap/data_layer_style';
+import { FeatureCollection } from 'geojson';
+import { newGoogleMapDLStyle } from 'src/app/gmap/data_layer_style';
 
 @Component({
   selector: 'app-map1',
@@ -23,7 +23,7 @@ export class Map1Component implements OnInit, AfterViewInit, OnChanges {
   zoom: number;
 
   @Input()
-  fc: GeoJSON.FeatureCollection | undefined;
+  fc: FeatureCollection | undefined;
 
   constructor(
   ) {

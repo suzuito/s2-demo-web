@@ -1,5 +1,6 @@
+import { FeatureCollection } from 'geojson';
 
-export const emptyFeatureCollection: GeoJSON.FeatureCollection = {
+export const emptyFeatureCollection: FeatureCollection = {
     type: 'FeatureCollection',
     features: [],
 };

@@ -1,8 +1,6 @@
 <mat-sidenav-container>
     <mat-sidenav mode='side' [opened]='opened'>
-        <mat-card style='height: 100%;'>
-            <app-index [root]='rootIndex' (clickLink)='clickIndex($event)'></app-index>
-        </mat-card>
+        <app-index [root]='rootIndex' (clickLink)='clickIndex($event)'></app-index>
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar>
