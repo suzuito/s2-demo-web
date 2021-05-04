@@ -4,6 +4,7 @@ import { SafeHtml, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleBlock } from 'src/app/entity/article';
 import { PrintGeoJSONOption } from 'src/app/entity/result';
+import { MetaService, NewMetas, SiteLocale, SiteOrigin, SiteName } from 'src/app/meta.service';
 import { ArticleService } from './article.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class ArticleComponent implements OnInit {
     private articleService: ArticleService,
     private route: ActivatedRoute,
     private titleService: Title,
+    private metaService: MetaService,
   ) {
     this.route.url.subscribe(v => {
       this.articleService.fetchArticle();
@@ -30,7 +32,17 @@ export class ArticleComponent implements OnInit {
         if (this.articleService.article === undefined) {
           return;
         }
-        this.titleService.setTitle(`s2 Sandbox | ${this.articleService.article.title}`);
+        this.titleService.setTitle(`${SiteName} | ${this.articleService.article.title}`);
+        this.metaService.setMetas(NewMetas({
+          ogTitle: this.articleService.article.title,
+          ogLocale: SiteLocale,
+          ogDescription: this.articleService.article.description,
+          ogUrl: `${SiteOrigin}${location.pathname}`,
+          ogSiteName: SiteName,
+          ogType: 'article',
+          description: this.articleService.article.description,
+          ogImage: `https://${SiteOrigin}/assets/ss.jpg`, // FIXME
+        }));
       },
     });
   }
