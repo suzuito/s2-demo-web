@@ -20,6 +20,11 @@ jobs:
           project_id: ${{env.GCP_PROJECT_ID}}
           service_account_key: ${{ secrets.GCP_SA_KEY_GODZILLA }}
           export_default_credentials: true
-      - run: gsutil rm -r gs://${{env.GCP_PROJECT_ID}}-s2-demo-server/*
+      - run: gsutil rm -r gs://${{env.GCP_PROJECT_ID}}-s2-demo-server/assets
+      - run: gsutil rm -r gs://${{env.GCP_PROJECT_ID}}-s2-demo-server/*.txt
+      - run: gsutil rm -r gs://${{env.GCP_PROJECT_ID}}-s2-demo-server/*.js
+      - run: gsutil rm -r gs://${{env.GCP_PROJECT_ID}}-s2-demo-server/*.ico
+      - run: gsutil rm -r gs://${{env.GCP_PROJECT_ID}}-s2-demo-server/*.html
+      - run: gsutil rm -r gs://${{env.GCP_PROJECT_ID}}-s2-demo-server/*.css
         continue-on-error: true
       - run: gsutil cp -r dist/s2-demo-web/* gs://${{env.GCP_PROJECT_ID}}-s2-demo-server
